@@ -1,0 +1,17 @@
+.frame {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.227);
+  max-width: fit-content;
+  height: fit-content;
+  padding: 30px;
+  margin: 20px auto;
+  border-radius: 10px;
+  transition: all 0.3s;
+}
+
+@media (min-width: 600px) {
+  .frame {
+    width: fit-content;
+    height: fit-content;
+    padding: 30px 150px 150px;
+  }
+}

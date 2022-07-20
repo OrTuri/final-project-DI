@@ -1,0 +1,48 @@
+.heading {
+  text-align: center;
+}
+
+.link {
+  text-decoration: none;
+  color: rgb(15, 112, 223);
+  font-weight: 600;
+  transition: all 0.5s;
+}
+
+.container {
+  height: 380px;
+  width: 350px;
+}
+
+.paragraph {
+  text-align: center;
+}
+
+@media (max-width: 700px) {
+  .container {
+    width: 300px;
+    height: 500px;
+  }
+}
+
+.gender {
+  font-size: 15px;
+}
+
+label {
+  font-size: 15px;
+}
+
+.gender-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.gender-inputs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
