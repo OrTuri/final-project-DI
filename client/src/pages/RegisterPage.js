@@ -3,6 +3,8 @@ import Button from "../components/UI/Form/Button";
 import Input from "../components/UI/Form/Input";
 import Frame from "../components/UI/Frame";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import axios from "axios";
 
 const RegisterPage = (props) => {
   return (
