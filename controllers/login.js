@@ -34,7 +34,7 @@ const postLogin = async (req, res) => {
 
   res.cookie(
     "token",
-    jwt.sign(userData, process.env.JWT_SECRET, { expiresIn: "1h" }),
+    jwt.sign(userData, process.env.JWT_SECRET, { expiresIn: "0.5h" }),
     {
       httpOnly: true,
     }
