@@ -4,4 +4,8 @@ const getPropertyFromDB = (table, column, where) => {
   return db(table).select(column).where(where);
 };
 
-module.exports = { getPropertyFromDB };
+const pushDataToDB = (table, insertValue) => {
+  return db(table).insert(insertValue).returning("*");
+};
+
+module.exports = { getPropertyFromDB, pushDataToDB };

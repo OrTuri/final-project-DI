@@ -21,7 +21,9 @@ const Modal = (props) => {
             <p className={style.body}>{modalBody}</p>
             <div className={style["btns-container"]}>
               <Button
-                onClick={() => dispatch(dispatch(setModal(false)))}
+                onClick={() => {
+                  dispatch(dispatch(setModal(false)));
+                }}
                 color={props.twoButtons ? "#125B50" : "#F0A500"}
                 label={props.btn1Label}
               />

@@ -19,6 +19,9 @@ const modalSlice = createSlice({
     setModalBody: (state, action) => {
       state.modalBody = action.payload;
     },
+    resetModal: (state, action) => {
+      state = initialState;
+    },
   },
 });
 

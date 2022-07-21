@@ -8,10 +8,13 @@ import Modal from "../components/UI/modal/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { inputValues, resetInputs } from "../features/registerSlice";
 import { setModal, setModalTitle, setModalBody } from "../features/modalSlice";
+import { useNavigate } from "react-router-dom";
 
 const RegisterPage = (props) => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { inputs } = useSelector((state) => state.register);
+  const { isOpen } = useSelector((state) => state.modal);
   const handleChange = (e) => {
     dispatch(inputValues({ name: e.target.name, value: e.target.value }));
   };
@@ -23,7 +26,13 @@ const RegisterPage = (props) => {
         method: "POST",
         data: inputs,
       });
-      console.log(res);
+
+      if (res.status === 200) {
+        dispatch(setModal(true));
+        dispatch(setModalTitle("Registered Successfully! 🟢"));
+        dispatch(setModalBody("Please Login"));
+        // navigate("/login", { replace: true });
+      }
       dispatch(resetInputs());
     } catch (err) {
       console.log(err);
