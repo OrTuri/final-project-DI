@@ -1,10 +1,7 @@
 const db = require("./connection");
 
 const getPropertyFromDB = (table, column, where) => {
-  db(table)
-    .select(column)
-    .where(where)
-    .then((res) => console.log(res));
+  return db(table).select(column).where(where);
 };
 
 module.exports = { getPropertyFromDB };

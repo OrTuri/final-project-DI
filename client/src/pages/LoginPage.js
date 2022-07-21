@@ -4,21 +4,17 @@ import Frame from "../components/UI/Frame";
 import style from "./LoginPage.module.css";
 import { Link } from "react-router-dom";
 import icon from "../assets/mainIcon.png";
-import { useState } from "react";
 import axios from "axios";
-
-const inputsInitialState = {
-  username: "",
-  password: "",
-};
+import { inputValues, resetInputs } from "../features/loginSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const LoginPage = (props) => {
-  const [inputsValue, setInputsValue] = useState(inputsInitialState);
+  const dispatch = useDispatch();
   const handleChange = (e) => {
-    setInputsValue((state) => {
-      return { ...state, [e.target.name]: e.target.value };
-    });
+    dispatch(inputValues({ name: e.target.name, value: e.target.value }));
   };
+
+  const { inputs } = useSelector((state) => state.login);
   const handleSubmit = async (e) => {
     e.preventDefault();
     const res = await axios({
@@ -27,10 +23,10 @@ const LoginPage = (props) => {
       headers: {
         "Content-Type": "application/json",
       },
-      data: inputsValue,
+      data: inputs,
     });
+    dispatch(resetInputs());
     console.log(res);
-    setInputsValue(inputsInitialState);
   };
   return (
     <Frame>
@@ -42,7 +38,7 @@ const LoginPage = (props) => {
         <h1 className={style["secondary-heading"]}>Login</h1>
         <form onSubmit={handleSubmit}>
           <Input
-            value={inputsValue.username}
+            value={inputs.username}
             name="username"
             onChange={handleChange}
             placeholder="Username"
@@ -51,7 +47,7 @@ const LoginPage = (props) => {
             required
           />
           <Input
-            value={inputsValue.password}
+            value={inputs.password}
             onChange={handleChange}
             name="password"
             placeholder="Password"
