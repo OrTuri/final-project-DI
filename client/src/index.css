@@ -12,5 +12,6 @@ html {
   font-size: 22px;
   min-height: 100vh;
   min-width: 100vw;
-  transition: all 0.5s;
+  transition: all 0.3s;
+  overflow-x: hidden;
 }

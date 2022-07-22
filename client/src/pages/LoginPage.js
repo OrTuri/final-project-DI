@@ -39,9 +39,6 @@ const LoginPage = (props) => {
         },
       } = err;
       console.log(errorMsg);
-      const {
-        response: { status },
-      } = err;
       dispatch(setModal(true));
       dispatch(setModalTitle("ERROR! ⚠️"));
       dispatch(setModalBody(errorMsg));
