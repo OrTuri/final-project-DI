@@ -3,10 +3,9 @@ import { useSelector } from "react-redux";
 
 const RecentActivities = (props) => {
   const { userActivities } = useSelector((state) => state.userData);
-  console.log(userActivities);
   return (
     <div>
-      {userActivities.map((activity) => {
+      {[...userActivities].reverse().map((activity) => {
         return (
           <ActivityCard
             key={activity.activity_id}

@@ -17,14 +17,30 @@ export const loadUserActivities = createAsyncThunk(
 export const addUserActivity = createAsyncThunk(
   "userData/addUserActivity",
   async (formData, thunkAPI) => {
-    const activity = {
-      ...formData,
-      location: `${thunkAPI.getState().map.clickedLocation[0]},${
-        thunkAPI.getState().map.clickedLocation[1]
-      }`,
-    };
-    console.log(activity);
-    const res = await axios({});
+    try {
+      const { bmr } = thunkAPI.getState().userData.userDetails;
+      const caloriesBurned = (
+        ((bmr * (formData.activity === "running" ? 11 : 6.8)) / 24) *
+        (Number(formData.duration) / 60)
+      ).toFixed(0);
+
+      const activity = {
+        ...formData,
+        location: `${thunkAPI.getState().map.clickedLocation[0]},${
+          thunkAPI.getState().map.clickedLocation[1]
+        }`,
+        caloriesBurned,
+        userId: thunkAPI.getState().userData.userDetails.userId,
+      };
+      const res = await axios({
+        url: "/activities/add",
+        method: "POST",
+        data: activity,
+      });
+      return res.data;
+    } catch (err) {
+      console.log(err);
+    }
   }
 );
 
@@ -56,6 +72,9 @@ const userDataSlice = createSlice({
   },
   extraReducers: {
     [loadUserActivities.fulfilled]: (state, action) => {
+      state.userActivities = action.payload;
+    },
+    [addUserActivity.fulfilled]: (state, action) => {
       state.userActivities = action.payload;
     },
   },

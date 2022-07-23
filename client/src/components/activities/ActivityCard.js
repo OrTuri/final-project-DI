@@ -24,7 +24,15 @@ const ActivityCard = (props) => {
       <div className={style.details}>
         <p className={style.calories}>{props.calories} calories</p>
         <p className={style.duration}>{props.duration} mins</p>
-        <p className={style.date}>{props.date}</p>
+        <p className={style.date}>
+          {new Date(props.date).toLocaleString("he-il", {
+            year: "2-digit",
+            month: "2-digit",
+            day: "2-digit",
+            hour: "2-digit",
+            minute: "2-digit",
+          })}
+        </p>
       </div>
     </div>
   );

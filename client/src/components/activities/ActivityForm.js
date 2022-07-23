@@ -7,6 +7,7 @@ import {
   resetAddInputValues,
 } from "../../features/userDataSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { setClickedLocation } from "../../features/mapSlice";
 
 const ActivityForm = (props) => {
   const dispatch = useDispatch();
@@ -18,6 +19,7 @@ const ActivityForm = (props) => {
     e.preventDefault();
     dispatch(addUserActivity(addActivityFormInputValues));
     dispatch(resetAddInputValues());
+    dispatch(setClickedLocation(null));
   };
   return (
     <form className={style.form} onSubmit={submitHandler}>
