@@ -12,10 +12,10 @@ const Authenticate = ({ children }) => {
     axios({ url: "/auth", method: "POST" })
       .then((res) => {
         setIsAuthorized(true);
-        if (Object.keys(userDetails).length < 1) {
-          const { username, fullName, bmr } = res.data;
-          dispatch(setUserDetails({ username, fullName, bmr: Number(bmr) }));
-        }
+        const { username, fullName, bmr, userId } = res.data;
+        dispatch(
+          setUserDetails({ username, fullName, bmr: Number(bmr), userId })
+        );
       })
       .catch((err) => setIsAuthorized(false));
   }, []);

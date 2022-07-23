@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = { clickedLocation: [] };
+const initialState = { clickedLocation: null };
 
 const mapSlice = createSlice({
   name: "map",

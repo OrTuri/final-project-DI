@@ -4,6 +4,7 @@ const dotenv = require("dotenv").config();
 const loginRouter = require("./routes/login");
 const registerRouter = require("./routes/register");
 const authRouter = require("./routes/auth");
+const activitiesRouter = require("./routes/activities");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 
@@ -19,3 +20,4 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/login", loginRouter);
 app.use("/register", registerRouter);
 app.use("/auth", authRouter);
+app.use("/activities", activitiesRouter);

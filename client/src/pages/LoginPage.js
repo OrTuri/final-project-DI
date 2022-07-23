@@ -16,7 +16,6 @@ const LoginPage = (props) => {
   const handleChange = (e) => {
     dispatch(inputValues({ name: e.target.name, value: e.target.value }));
   };
-
   const { inputs } = useSelector((state) => state.login);
   const handleSubmit = async (e) => {
     e.preventDefault();
