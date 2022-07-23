@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = { clickedLocation: null };
+const initialState = { clickedLocation: null, cardLocation: null };
 
 const mapSlice = createSlice({
   name: "map",
@@ -9,9 +9,12 @@ const mapSlice = createSlice({
     setClickedLocation: (state, action) => {
       state.clickedLocation = action.payload;
     },
+    setCardLocation: (state, action) => {
+      state.cardLocation = action.payload;
+    },
   },
 });
 
-export const { setClickedLocation } = mapSlice.actions;
+export const { setClickedLocation, setCardLocation } = mapSlice.actions;
 
 export default mapSlice.reducer;

@@ -1,0 +1,30 @@
+.map-container {
+  width: 90%;
+  height: 90vh;
+  margin-top: 30px;
+  border-radius: 20px;
+  box-shadow: 0 0 20px 2px rgb(0 0 0 / 28%);
+  margin: 20px auto;
+}
+
+.map-container:focus {
+  outline: none;
+}
+
+.popup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.popup-heading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.popup-date {
+  margin: 5px 0 !important;
+}

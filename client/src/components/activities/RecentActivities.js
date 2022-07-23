@@ -8,6 +8,10 @@ const RecentActivities = (props) => {
       {[...userActivities].reverse().map((activity) => {
         return (
           <ActivityCard
+            coords={[
+              activity.location.split(",")[0],
+              activity.location.split(",")[1],
+            ]}
             key={activity.activity_id}
             activity={activity.activity_name}
             duration={activity.activity_duration}

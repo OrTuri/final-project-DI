@@ -1,8 +1,11 @@
 import style from "./ActivityCard.module.css";
 import { BiRun } from "react-icons/bi";
 import { BsBicycle } from "react-icons/bs";
+import { useDispatch } from "react-redux";
+import { setCardLocation } from "../../features/mapSlice";
 
 const ActivityCard = (props) => {
+  const dispatch = useDispatch();
   let icon = null;
   switch (props.activity) {
     case "running":
@@ -16,7 +19,12 @@ const ActivityCard = (props) => {
       break;
   }
   return (
-    <div className={style["main-container"]}>
+    <div
+      className={style["main-container"]}
+      onClick={() => {
+        dispatch(setCardLocation(props.coords));
+      }}
+    >
       <div className={style["heading-container"]}>
         <h4 className={style.activity}>{props.activity}</h4>
         {icon}
