@@ -1,10 +1,12 @@
 import style from "./ActivityCard.module.css";
 import { BiRun } from "react-icons/bi";
 import { BsBicycle } from "react-icons/bs";
-import { useDispatch } from "react-redux";
-import { setCardLocation } from "../../features/mapSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { setCardLocation, setCardMarker } from "../../features/mapSlice";
 
 const ActivityCard = (props) => {
+  const { markers } = useSelector((state) => state.userData);
+  const marker = markers.find((marker) => marker.id === props.id)?.marker;
   const dispatch = useDispatch();
   let icon = null;
   switch (props.activity) {
@@ -23,6 +25,7 @@ const ActivityCard = (props) => {
       className={style["main-container"]}
       onClick={() => {
         dispatch(setCardLocation(props.coords));
+        dispatch(setCardMarker(marker));
       }}
     >
       <div className={style["heading-container"]}>

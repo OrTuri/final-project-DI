@@ -15,6 +15,10 @@ const store = configureStore({
     userData: userDataReducer,
     map: mapSlice,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });
 
 export default store;

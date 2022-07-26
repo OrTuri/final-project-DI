@@ -5,7 +5,6 @@ import { setUserDetails } from "../../features/userDataSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const Authenticate = ({ children }) => {
-  const { userDetails } = useSelector((state) => state.userData);
   const dispatch = useDispatch();
   const [isAuthorized, setIsAuthorized] = useState(null);
   useEffect(() => {

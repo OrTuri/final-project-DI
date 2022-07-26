@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, current } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const loadUserActivities = createAsyncThunk(
@@ -47,6 +47,7 @@ export const addUserActivity = createAsyncThunk(
 const initialState = {
   userDetails: {},
   userActivities: [],
+  markers: [],
   addActivityFormInputValues: {
     activity: "",
     duration: "",
@@ -69,6 +70,12 @@ const userDataSlice = createSlice({
       state.addActivityFormInputValues =
         initialState.addActivityFormInputValues;
     },
+    addMarkers: (state, action) => {
+      state.markers.push({
+        id: action.payload.id,
+        marker: action.payload.marker,
+      });
+    },
   },
   extraReducers: {
     [loadUserActivities.fulfilled]: (state, action) => {
@@ -80,7 +87,11 @@ const userDataSlice = createSlice({
   },
 });
 
-export const { setUserDetails, setAddInputValues, resetAddInputValues } =
-  userDataSlice.actions;
+export const {
+  setUserDetails,
+  setAddInputValues,
+  resetAddInputValues,
+  addMarkers,
+} = userDataSlice.actions;
 
 export default userDataSlice.reducer;
