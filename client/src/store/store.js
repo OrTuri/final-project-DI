@@ -6,6 +6,7 @@ import authenticationReducer from "../features/authenticationSlice";
 import userDataReducer from "../features/userDataSlice";
 import mapSlice from "../features/mapSlice";
 import filterActivityReducer from "../features/filterActivitySlice";
+import deleteActivityReducer from "../features/deleteActivitySlice";
 
 const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ const store = configureStore({
     userData: userDataReducer,
     map: mapSlice,
     filterActivity: filterActivityReducer,
+    deleteActivity: deleteActivityReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

@@ -1,4 +1,8 @@
-const { getPropertyFromDB, pushDataToDB } = require("../database/dbModules");
+const {
+  getPropertyFromDB,
+  pushDataToDB,
+  deleteFromDB,
+} = require("../database/dbModules");
 
 const sendActivities = async (req, res) => {
   const { userId } = req.body;
@@ -38,4 +42,10 @@ const addActivity = (req, res) => {
   });
 };
 
-module.exports = { sendActivities, addActivity };
+const deleteActivity = (req, res) => {
+  deleteFromDB("exercise_tracking_activities", { activity_id: req.body }).then(
+    (returning) => console.log(returning)
+  );
+};
+
+module.exports = { sendActivities, addActivity, deleteActivity };

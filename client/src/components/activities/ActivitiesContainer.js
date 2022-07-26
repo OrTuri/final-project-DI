@@ -40,7 +40,7 @@ const ActivitiesContainer = (props) => {
       )}
       {clickedLocation && <ActivityForm />}
       <h3 className={style["recent-activity-title"]}>
-        5 most recent activities:
+        5 most recently added activities:
       </h3>
       <RecentActivities />
       <div></div>

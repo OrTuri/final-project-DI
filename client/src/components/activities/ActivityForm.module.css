@@ -7,6 +7,10 @@
   padding: 10px;
 }
 
+.heading {
+  text-align: center;
+}
+
 .select {
   padding: 5px;
   border-radius: 10px;

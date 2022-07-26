@@ -10,17 +10,25 @@ import {
   setModalBody,
 } from "../../features/modalSlice";
 import Modal from "../UI/modal/Modal";
+import { deleteUserActivity } from "../../features/deleteActivitySlice";
+import { setCurrentActivityId } from "../../features/deleteActivitySlice";
 
 const ActivityCard = (props) => {
   const { markers } = useSelector((state) => state.userData);
+  const { currentActivityId } = useSelector((state) => state.deleteActivity);
   const marker = markers.find((marker) => marker.id === props.id)?.marker;
   const dispatch = useDispatch();
   let icon = null;
-  const deleteActivity = (e) => {
+  const onClickDeleteActivityBtn = (e) => {
     e.stopPropagation();
+    dispatch(setCurrentActivityId(props.id));
     dispatch(setModal(true));
     dispatch(setModalTitle("DELETE ACTIVITY ⚠️"));
     dispatch(setModalBody("Are you sure you want to delete?"));
+  };
+
+  const deleteActivity = () => {
+    dispatch(deleteUserActivity(currentActivityId));
   };
   switch (props.activity) {
     case "running":
@@ -35,7 +43,12 @@ const ActivityCard = (props) => {
   }
   return (
     <>
-      <Modal twoButtons btn1Label="NO" btn2Label="YES" />
+      <Modal
+        twoButtons
+        btn1Label="NO"
+        btn2Label="YES"
+        onClick={deleteActivity}
+      />
       <div
         className={style["main-container"]}
         onClick={() => {
@@ -48,7 +61,10 @@ const ActivityCard = (props) => {
           {icon}
           {props.showBtns && (
             <div className={style["btns-container"]}>
-              <button className={style["del-btn"]} onClick={deleteActivity}>
+              <button
+                className={style["del-btn"]}
+                onClick={onClickDeleteActivityBtn}
+              >
                 <AiFillDelete size="1.5em" color="#fff" />
               </button>
               <button className={style["edit-btn"]}>

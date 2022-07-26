@@ -8,4 +8,8 @@ const pushDataToDB = (table, insertValue) => {
   return db(table).insert(insertValue).returning("*");
 };
 
-module.exports = { getPropertyFromDB, pushDataToDB };
+const deleteFromDB = (table, where) => {
+  return db(table).where(where).del().returning("*");
+};
+
+module.exports = { getPropertyFromDB, pushDataToDB, deleteFromDB };
