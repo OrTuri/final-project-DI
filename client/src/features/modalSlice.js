@@ -24,12 +24,12 @@ const modalSlice = createSlice({
       state.modalBody = action.payload;
     },
     resetModal: (state, action) => {
-      state = initialState;
-      state.modalZoomControl = true;
+      return initialState;
     },
   },
 });
 
-export const { setModal, setModalTitle, setModalBody } = modalSlice.actions;
+export const { setModal, setModalTitle, setModalBody, resetModal } =
+  modalSlice.actions;
 
 export default modalSlice.reducer;

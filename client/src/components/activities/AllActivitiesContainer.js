@@ -23,7 +23,7 @@ const AllActivitiesContainer = (props) => {
       </Link>
       <h1 className={style["main-heading"]}>All Activities</h1>
       <div className={style.filter}>
-        <label htmlFor="filter">Filter By</label>
+        <label htmlFor="filter">Sort By</label>
         <select
           value={selectValue}
           id="filter"

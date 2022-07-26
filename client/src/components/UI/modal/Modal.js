@@ -3,7 +3,7 @@ import Button from "../Form/Button";
 import ReactDom from "react-dom";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { setModal } from "../../../features/modalSlice";
+import { resetModal } from "../../../features/modalSlice";
 
 const Backdrop = (props) => {
   return <div className={style.backdrop}>{props.children}</div>;
@@ -22,7 +22,7 @@ const Modal = (props) => {
             <div className={style["btns-container"]}>
               <Button
                 onClick={() => {
-                  dispatch(dispatch(setModal(false)));
+                  dispatch(resetModal());
                 }}
                 color={props.twoButtons ? "#B20600" : "#F0A500"}
                 label={props.btn1Label}

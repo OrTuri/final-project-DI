@@ -5,7 +5,7 @@ import axios from "axios";
 export const deleteUserActivity = createAsyncThunk(
   "userData/deleteUserActivity",
   async (activityId, thunkAPI) => {
-    const res = await axios({
+    await axios({
       url: "/activities/del",
       method: "DELETE",
       data: activityId,

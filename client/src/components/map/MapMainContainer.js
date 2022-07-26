@@ -1,4 +1,10 @@
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+  ZoomControl,
+} from "react-leaflet";
 import GetPosition from "./GetPosition";
 import style from "./MapMainContainer.module.css";
 import { useSelector } from "react-redux";
@@ -18,8 +24,9 @@ const MapMainContainer = (props) => {
       center={[32.109333, 34.855499]}
       zoom={12}
       scrollWheelZoom={true}
-      zoomControl={modalZoomControl}
+      zoomControl={false}
     >
+      {modalZoomControl ? <ZoomControl position="topleft" /> : null}
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

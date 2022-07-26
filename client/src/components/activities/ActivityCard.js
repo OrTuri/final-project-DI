@@ -8,6 +8,7 @@ import {
   setModal,
   setModalTitle,
   setModalBody,
+  resetModal,
 } from "../../features/modalSlice";
 import Modal from "../UI/modal/Modal";
 import { deleteUserActivity } from "../../features/deleteActivitySlice";
@@ -29,7 +30,7 @@ const ActivityCard = (props) => {
 
   const deleteActivity = () => {
     dispatch(deleteUserActivity(currentActivityId));
-    dispatch(setModal(false));
+    dispatch(resetModal());
   };
   switch (props.activity) {
     case "running":

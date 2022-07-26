@@ -5,6 +5,11 @@ const RecentActivities = (props) => {
   const { userActivities } = useSelector((state) => state.userData);
   return (
     <div>
+      {userActivities.length > 0 && (
+        <h3 style={{ fontSize: "17px", textAlign: "center" }}>
+          5 most recently added activities:
+        </h3>
+      )}
       {[...userActivities]
         .reverse()
         .slice(0, 5)
