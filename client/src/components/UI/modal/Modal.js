@@ -24,13 +24,13 @@ const Modal = (props) => {
                 onClick={() => {
                   dispatch(dispatch(setModal(false)));
                 }}
-                color={props.twoButtons ? "#125B50" : "#F0A500"}
+                color={props.twoButtons ? "#B20600" : "#F0A500"}
                 label={props.btn1Label}
               />
               {props.twoButtons && (
                 <Button
-                  onClick={() => props.onClose(false)}
-                  color="#B20600"
+                  onClick={props.onClick}
+                  color="#125B50"
                   label={props.btn2Label}
                 />
               )}

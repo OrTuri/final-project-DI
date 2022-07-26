@@ -27,4 +27,28 @@
   justify-content: center;
   align-items: center;
   gap: 15px;
+  position: relative;
+}
+
+.del-btn,
+.edit-btn {
+  border: none;
+  border-radius: 5px;
+  margin: 5px;
+  padding: 3px;
+  cursor: pointer;
+}
+
+.del-btn {
+  background-color: rgb(151, 83, 83);
+}
+
+.edit-btn {
+  background-color: rgb(184, 172, 81);
+}
+
+.btns-container {
+  position: absolute;
+  right: 0;
+  top: 0;
 }

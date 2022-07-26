@@ -4,6 +4,7 @@ const initialState = {
   isOpen: false,
   modalTitle: "",
   modalBody: "",
+  modalZoomControl: true,
 };
 
 const modalSlice = createSlice({
@@ -12,6 +13,9 @@ const modalSlice = createSlice({
   reducers: {
     setModal: (state, action) => {
       state.isOpen = action.payload;
+      if (action.payload) {
+        state.modalZoomControl = false;
+      }
     },
     setModalTitle: (state, action) => {
       state.modalTitle = action.payload;
@@ -21,6 +25,7 @@ const modalSlice = createSlice({
     },
     resetModal: (state, action) => {
       state = initialState;
+      state.modalZoomControl = true;
     },
   },
 });

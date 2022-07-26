@@ -5,6 +5,7 @@ import modalReducer from "../features/modalSlice";
 import authenticationReducer from "../features/authenticationSlice";
 import userDataReducer from "../features/userDataSlice";
 import mapSlice from "../features/mapSlice";
+import filterActivityReducer from "../features/filterActivitySlice";
 
 const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ const store = configureStore({
     authentication: authenticationReducer,
     userData: userDataReducer,
     map: mapSlice,
+    filterActivity: filterActivityReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

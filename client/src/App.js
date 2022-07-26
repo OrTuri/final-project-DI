@@ -1,15 +1,16 @@
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import HomePage from "./pages/HomePage";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Authenticate from "./components/authenticate/Authenticate";
-import AllActivities from "./components/activities/AllActivities";
+import AllActivities from "./components/activities/AllActivitiesContainer";
 import ActivitiesContainer from "./components/activities/ActivitiesContainer";
 
 const App = () => {
   return (
     <div>
       <Routes>
+        <Route path="/" element={<Navigate to="/home" replace={true} />} />
         <Route
           path="/home"
           element={

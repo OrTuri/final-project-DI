@@ -11,12 +11,14 @@ const MapMainContainer = (props) => {
     (state) => state.map
   );
   const { userActivities } = useSelector((state) => state.userData);
+  const { modalZoomControl } = useSelector((state) => state.modal);
   return (
     <MapContainer
       className={style["map-container"]}
       center={[32.109333, 34.855499]}
       zoom={12}
       scrollWheelZoom={true}
+      zoomControl={modalZoomControl}
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
