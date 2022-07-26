@@ -5,7 +5,7 @@ import { loadUserActivities } from "../../features/userDataSlice";
 import { useEffect } from "react";
 import RecentActivities from "./RecentActivities";
 import Button from "../UI/Form/Button";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const ActivitiesContainer = (props) => {
   const navigate = useNavigate();
@@ -18,6 +18,11 @@ const ActivitiesContainer = (props) => {
   return (
     <div className={style["activities-container"]}>
       <div className={style["heading-container"]}>
+        <div className={style.btn}>
+          <Link to="/home/all" className={style.link}>
+            <Button label="All Activities" color="#EC994B" />
+          </Link>
+        </div>
         <h1 className={style["main-heading"]}>
           Welcome {userDetails.fullName.split(" ")[0]}!
         </h1>
@@ -27,9 +32,6 @@ const ActivitiesContainer = (props) => {
           width="100px"
           onClick={() => navigate("/login", { replace: true })}
         />
-      </div>
-      <div className={style.btn}>
-        <Button label="All Activities" color="#EC994B" />
       </div>
       {!clickedLocation && (
         <h2 className={style["add-activity-title"]}>

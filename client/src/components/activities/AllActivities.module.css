@@ -1,0 +1,19 @@
+.activities-container {
+  width: 90%;
+  height: 90vh;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px 2px rgb(0 0 0 / 28%);
+  margin-top: 20px;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 15px;
+  overflow: auto;
+}
+
+.link {
+  text-decoration: none;
+}

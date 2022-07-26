@@ -29,7 +29,7 @@ const LoginPage = (props) => {
         data: inputs,
       });
       dispatch(resetInputs());
-      navigate("/", { replace: true });
+      navigate("/home", { replace: true });
     } catch (err) {
       console.log(err);
       const {

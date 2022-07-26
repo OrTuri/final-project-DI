@@ -27,6 +27,7 @@
 
 .add-activity-title {
   font-size: 25px;
+  text-align: center;
 }
 
 .recent-activity-title {
@@ -40,12 +41,21 @@
   width: 100%;
 }
 
-@media (max-width: 1150px) {
+@media (max-width: 1300px) {
   .heading-container {
-    display: block;
+    /* display: block; */
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    justify-content: center;
   }
   .main-heading {
     width: fit-content;
     margin: auto;
+    grid-column: 1;
+    grid-row: 1;
   }
+}
+
+.link {
+  text-decoration: none;
 }
