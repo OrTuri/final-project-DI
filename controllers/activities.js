@@ -43,9 +43,11 @@ const addActivity = (req, res) => {
 };
 
 const deleteActivity = (req, res) => {
-  deleteFromDB("exercise_tracking_activities", { activity_id: req.body }).then(
-    (returning) => console.log(returning)
-  );
+  deleteFromDB("exercise_tracking_activities", {
+    activity_id: req.body,
+  }).then(() => {
+    res.send();
+  });
 };
 
 module.exports = { sendActivities, addActivity, deleteActivity };

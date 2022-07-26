@@ -29,6 +29,7 @@ const ActivityCard = (props) => {
 
   const deleteActivity = () => {
     dispatch(deleteUserActivity(currentActivityId));
+    dispatch(setModal(false));
   };
   switch (props.activity) {
     case "running":

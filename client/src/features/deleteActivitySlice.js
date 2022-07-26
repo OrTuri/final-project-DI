@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { loadUserActivities } from "./userDataSlice";
 import axios from "axios";
 
 export const deleteUserActivity = createAsyncThunk(
@@ -12,7 +13,7 @@ export const deleteUserActivity = createAsyncThunk(
         "Content-Type": "text/plain",
       },
     });
-    console.log(res.data);
+    thunkAPI.dispatch(loadUserActivities());
   }
 );
 
