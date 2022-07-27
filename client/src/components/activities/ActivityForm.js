@@ -71,7 +71,13 @@ const ActivityForm = (props) => {
           />
         </div>
         <div className={style.btn}>
-          <Button label="ADD" width="80px" margin="20px auto" type="submit" />
+          <Button
+            label="ADD"
+            width="80px"
+            margin="20px auto"
+            type="submit"
+            color="#2B7A0B"
+          />
         </div>
       </form>
     </div>

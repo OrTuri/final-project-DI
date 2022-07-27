@@ -6,12 +6,16 @@ import { useEffect } from "react";
 import RecentActivities from "./RecentActivities";
 import Button from "../UI/Form/Button";
 import { useNavigate, Link } from "react-router-dom";
+import { setMode } from "../../features/mapSlice";
 
 const ActivitiesContainer = (props) => {
   const navigate = useNavigate();
   const { userDetails } = useSelector((state) => state.userData);
   const { clickedLocation } = useSelector((state) => state.map);
   const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(setMode("add"));
+  });
   useEffect(() => {
     dispatch(loadUserActivities());
   }, [dispatch]);

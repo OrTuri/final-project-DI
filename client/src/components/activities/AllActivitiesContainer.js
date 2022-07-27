@@ -6,9 +6,13 @@ import AllActivities from "./AllActivities";
 import { useEffect } from "react";
 import { loadUserActivities } from "../../features/userDataSlice";
 import { setSelectValue } from "../../features/filterActivitySlice";
+import { setMode } from "../../features/mapSlice";
 
 const AllActivitiesContainer = (props) => {
   const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(setMode("add"));
+  });
   useEffect(() => {
     dispatch(loadUserActivities());
   }, []);

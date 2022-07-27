@@ -7,6 +7,7 @@ import userDataReducer from "../features/userDataSlice";
 import mapSlice from "../features/mapSlice";
 import filterActivityReducer from "../features/filterActivitySlice";
 import deleteActivityReducer from "../features/deleteActivitySlice";
+import editActivityReducer from "../features/editActivitySlice";
 
 const store = configureStore({
   reducer: {
@@ -18,6 +19,7 @@ const store = configureStore({
     map: mapSlice,
     filterActivity: filterActivityReducer,
     deleteActivity: deleteActivityReducer,
+    editActivity: editActivityReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

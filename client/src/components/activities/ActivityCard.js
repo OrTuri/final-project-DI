@@ -13,6 +13,7 @@ import {
 import Modal from "../UI/modal/Modal";
 import { deleteUserActivity } from "../../features/deleteActivitySlice";
 import { setCurrentActivityId } from "../../features/deleteActivitySlice";
+import { Link } from "react-router-dom";
 
 const ActivityCard = (props) => {
   const { markers } = useSelector((state) => state.userData);
@@ -69,9 +70,11 @@ const ActivityCard = (props) => {
               >
                 <AiFillDelete size="1.5em" color="#fff" />
               </button>
-              <button className={style["edit-btn"]}>
-                <AiFillEdit size="1.5em" color="#fff" />
-              </button>
+              <Link to={`/home/edit/${props.id}`}>
+                <button className={style["edit-btn"]}>
+                  <AiFillEdit size="1.5em" color="#fff" />
+                </button>
+              </Link>
             </div>
           )}
         </div>

@@ -1,21 +1,11 @@
-import {
-  MapContainer,
-  TileLayer,
-  Marker,
-  Popup,
-  ZoomControl,
-} from "react-leaflet";
+import { MapContainer, TileLayer, ZoomControl } from "react-leaflet";
 import GetPosition from "./GetPosition";
 import style from "./MapMainContainer.module.css";
 import { useSelector } from "react-redux";
 import FlyToCard from "./FlyToCard";
-import { useRef } from "react";
 import CustomMarker from "./CustomMarker";
 const MapMainContainer = (props) => {
-  const markerRef = useRef();
-  const { clickedLocation, cardLocation, cardMarker } = useSelector(
-    (state) => state.map
-  );
+  const { cardLocation, cardMarker } = useSelector((state) => state.map);
   const { userActivities } = useSelector((state) => state.userData);
   const { modalZoomControl } = useSelector((state) => state.modal);
   return (
@@ -34,13 +24,10 @@ const MapMainContainer = (props) => {
       {userActivities.map((activity) => {
         return <CustomMarker {...activity} key={activity.activity_id} />;
       })}
-      {clickedLocation ? (
-        <Marker position={clickedLocation} ref={markerRef}>
-          <Popup>Add new activity</Popup>
-        </Marker>
-      ) : null}
-      <GetPosition marker={markerRef} />
-      {cardLocation && <FlyToCard coords={cardLocation} marker={cardMarker} />}
+      <GetPosition />
+      {cardLocation && cardMarker && (
+        <FlyToCard coords={cardLocation} marker={cardMarker} />
+      )}
     </MapContainer>
   );
 };

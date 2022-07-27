@@ -5,6 +5,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import Authenticate from "./components/authenticate/Authenticate";
 import AllActivities from "./components/activities/AllActivitiesContainer";
 import ActivitiesContainer from "./components/activities/ActivitiesContainer";
+import EditActivity from "./components/activities/EditActivity";
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
         >
           <Route path="all" element={<AllActivities />} />
           <Route path="" element={<ActivitiesContainer />} />
+          <Route path="edit/:activityId" element={<EditActivity />} />
         </Route>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />

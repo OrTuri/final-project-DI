@@ -4,6 +4,7 @@ const initialState = {
   clickedLocation: null,
   cardLocation: null,
   cardMarker: null,
+  mode: "add",
 };
 
 const mapSlice = createSlice({
@@ -15,14 +16,18 @@ const mapSlice = createSlice({
     },
     setCardLocation: (state, action) => {
       state.cardLocation = action.payload;
+      state.clickedLocation = null;
     },
     setCardMarker: (state, action) => {
       state.cardMarker = action.payload;
     },
+    setMode: (state, action) => {
+      state.mode = action.payload;
+    },
   },
 });
 
-export const { setClickedLocation, setCardLocation, setCardMarker } =
+export const { setClickedLocation, setCardLocation, setCardMarker, setMode } =
   mapSlice.actions;
 
 export default mapSlice.reducer;
