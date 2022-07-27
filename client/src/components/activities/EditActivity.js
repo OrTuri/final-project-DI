@@ -140,6 +140,7 @@ const EditActivity = (props) => {
           <div className={style["input-container"]}>
             <label htmlFor="coords">Workout Location (click on the map)</label>
             <Input
+              readOnly
               onChange={changeHandler}
               value={editValues.coords}
               required

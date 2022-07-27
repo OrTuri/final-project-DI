@@ -6,10 +6,11 @@ const {
   deleteActivity,
   editActivity,
 } = require("../controllers/activities");
+const { jwtAuth } = require("../middleware/jwtAuth");
 
-router.post("/all", sendActivities);
-router.post("/add", addActivity);
-router.delete("/del", deleteActivity);
-router.put("/edit", editActivity);
+router.post("/all", jwtAuth, sendActivities);
+router.post("/add", jwtAuth, addActivity);
+router.delete("/del", jwtAuth, deleteActivity);
+router.put("/edit", jwtAuth, editActivity);
 
 module.exports = router;

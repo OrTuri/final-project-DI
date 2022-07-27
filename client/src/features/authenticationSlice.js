@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = { token: "" };
+const initialState = { token: "", navigateLogin: false };
 
 const AuthenticationSlice = createSlice({
   name: "authentication",
@@ -9,9 +9,12 @@ const AuthenticationSlice = createSlice({
     setToken: (state, action) => {
       state.token = action.payload;
     },
+    setNavigateLogin: (state, action) => {
+      state.navigateLogin = action.payload;
+    },
   },
 });
 
-export const { setToken } = AuthenticationSlice.actions;
+export const { setToken, setNavigateLogin } = AuthenticationSlice.actions;
 
 export default AuthenticationSlice.reducer;

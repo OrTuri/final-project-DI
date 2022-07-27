@@ -6,10 +6,13 @@ import Authenticate from "./components/authenticate/Authenticate";
 import AllActivities from "./components/activities/AllActivitiesContainer";
 import ActivitiesContainer from "./components/activities/ActivitiesContainer";
 import EditActivity from "./components/activities/EditActivity";
+import { useSelector } from "react-redux";
 
 const App = () => {
+  const { navigateLogin } = useSelector((state) => state.authentication);
   return (
     <div>
+      {navigateLogin && <Navigate to="/login" replace={true} />}
       <Routes>
         <Route path="/" element={<Navigate to="/home" replace={true} />} />
         <Route

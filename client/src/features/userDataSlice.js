@@ -4,13 +4,17 @@ import axios from "axios";
 export const loadUserActivities = createAsyncThunk(
   "userData/loadUserActivities",
   async (_, thunkAPI) => {
-    const userId = thunkAPI.getState().userData.userDetails.userId;
-    const res = await axios({
-      url: "/activities/all",
-      method: "POST",
-      data: { userId },
-    });
-    return res.data;
+    try {
+      const userId = thunkAPI.getState().userData.userDetails.userId;
+      const res = await axios({
+        url: "/activities/all",
+        method: "POST",
+        data: { userId },
+      });
+      return res.data;
+    } catch (err) {
+      console.log(err);
+    }
   }
 );
 

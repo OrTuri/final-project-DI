@@ -9,10 +9,15 @@ import { inputValues, resetInputs } from "../features/loginSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { setModal, setModalTitle, setModalBody } from "../features/modalSlice";
 import Modal from "../components/UI/modal/Modal";
+import { setNavigateLogin } from "../features/authenticationSlice";
+import { useEffect } from "react";
 
 const LoginPage = (props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(setNavigateLogin(false));
+  });
   const handleChange = (e) => {
     dispatch(inputValues({ name: e.target.name, value: e.target.value }));
   };
