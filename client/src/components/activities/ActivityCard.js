@@ -60,7 +60,9 @@ const ActivityCard = (props) => {
         }}
       >
         <div className={style["heading-container"]}>
-          <h4 className={style.activity}>{props.activity}</h4>
+          <h4 className={style.activity}>
+            {props.activity.at(0).toUpperCase() + props.activity.slice(1)}
+          </h4>
           {icon}
           {props.showBtns && (
             <div className={style["btns-container"]}>

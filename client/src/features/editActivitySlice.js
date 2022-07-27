@@ -1,4 +1,35 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
+import { setModal, setModalTitle, setModalBody } from "./modalSlice";
+import { setClickedLocation } from "./mapSlice";
+
+export const updateActivity = createAsyncThunk(
+  "editActivity/updateActivity",
+  async (data, thunkAPI) => {
+    const { bmr } = thunkAPI.getState().userData.userDetails;
+    const caloriesBurned = (
+      ((bmr * (data.activity === "running" ? 11 : 6.8)) / 24) *
+      (Number(data.duration) / 60)
+    ).toFixed(0);
+    const res = await axios({
+      url: "/activities/edit",
+      method: "PUT",
+      data: {
+        ...data,
+        caloriesBurned,
+      },
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const { dispatch } = thunkAPI;
+    dispatch(setModal(true));
+    dispatch(setModalTitle("Success!"));
+    dispatch(setModalBody("Your activity has been updated!"));
+    dispatch(setClickedLocation(null));
+    dispatch(setClickedMap(false));
+  }
+);
 
 const initialState = {
   currentActivityId: null,
@@ -8,7 +39,7 @@ const initialState = {
     date: "",
     coords: "",
   },
-  editLocation: null,
+  clickedMap: false,
 };
 
 const editActivitySlice = createSlice({
@@ -21,13 +52,13 @@ const editActivitySlice = createSlice({
     setValues: (state, action) => {
       state.editValues[action.payload.name] = action.payload.value;
     },
-    setEditLocation: (state, action) => {
-      state.editLocation = action.payload;
+    setClickedMap: (state, action) => {
+      state.clickedMap = action.payload;
     },
   },
 });
 
-export const { setCurrentActivityId, setValues, setEditLocation } =
+export const { setCurrentActivityId, setValues, setClickedMap } =
   editActivitySlice.actions;
 
 export default editActivitySlice.reducer;

@@ -2,6 +2,7 @@ const {
   getPropertyFromDB,
   pushDataToDB,
   deleteFromDB,
+  updateRecord,
 } = require("../database/dbModules");
 
 const sendActivities = async (req, res) => {
@@ -50,4 +51,23 @@ const deleteActivity = (req, res) => {
   });
 };
 
-module.exports = { sendActivities, addActivity, deleteActivity };
+const editActivity = (req, res) => {
+  console.log(req.body);
+  const { activityId, duration, coords, date, activity, caloriesBurned } =
+    req.body;
+  updateRecord(
+    "exercise_tracking_activities",
+    { activity_id: activityId },
+    {
+      activity_duration: duration,
+      location: coords,
+      date,
+      activity_name: activity,
+      calories_burned: caloriesBurned,
+    }
+  ).then((data) => {
+    res.send();
+  });
+};
+
+module.exports = { sendActivities, addActivity, deleteActivity, editActivity };

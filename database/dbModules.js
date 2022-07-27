@@ -12,4 +12,13 @@ const deleteFromDB = (table, where) => {
   return db(table).where(where).del().returning("*");
 };
 
-module.exports = { getPropertyFromDB, pushDataToDB, deleteFromDB };
+const updateRecord = (table, where, update) => {
+  return db(table).where(where).update(update).returning("*");
+};
+
+module.exports = {
+  getPropertyFromDB,
+  pushDataToDB,
+  deleteFromDB,
+  updateRecord,
+};
