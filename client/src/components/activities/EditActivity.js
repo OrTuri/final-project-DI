@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Input from "../UI/Form/Input";
 import { loadUserActivities } from "../../features/userDataSlice";
 import { useEffect } from "react";
-import { setValues } from "../../features/editActivitySlice";
+import { setValues, setEditLocation } from "../../features/editActivitySlice";
 import {
   setMode,
   setCardLocation,
@@ -36,6 +36,7 @@ const EditActivity = (props) => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(loadUserActivities());
+    dispatch(setEditLocation(null));
   }, []);
 
   useEffect(() => {

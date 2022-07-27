@@ -43,9 +43,18 @@ const GetPosition = (props) => {
       dispatch(setEditLocation(latLng));
     }
   });
-  if (!clickedLocation) return null;
+  if (
+    (mode === "add" && !clickedLocation) ||
+    (mode === "edit" && !editLocation)
+  ) {
+    return null;
+  }
   return (
-    <Marker position={clickedLocation} ref={markerRef} icon={redIcon}>
+    <Marker
+      position={mode === "add" ? clickedLocation : editLocation}
+      ref={markerRef}
+      icon={redIcon}
+    >
       <Popup>{mode === "add" ? "Add new activity" : "Edit Activity"}</Popup>
     </Marker>
   );
