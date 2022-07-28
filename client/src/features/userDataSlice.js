@@ -12,6 +12,7 @@ export const loadUserActivities = createAsyncThunk(
         url: "/activities/all",
         method: "POST",
         data: { userId },
+        headers: { Authorization: thunkAPI.getState().authentication.token },
       });
       return res.data;
     } catch (err) {
@@ -45,6 +46,7 @@ export const addUserActivity = createAsyncThunk(
         url: "/activities/add",
         method: "POST",
         data: activity,
+        headers: { Authorization: thunkAPI.getState().authentication.token },
       });
       return res.data;
     } catch (err) {

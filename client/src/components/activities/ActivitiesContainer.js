@@ -5,14 +5,20 @@ import { loadUserActivities } from "../../features/userDataSlice";
 import { useEffect } from "react";
 import RecentActivities from "./RecentActivities";
 import Button from "../UI/Form/Button";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { setMode } from "../../features/mapSlice";
+import axios from "axios";
+import { setNavigateLogin, setToken } from "../../features/authenticationSlice";
 
 const ActivitiesContainer = (props) => {
-  const navigate = useNavigate();
   const { userDetails } = useSelector((state) => state.userData);
   const { clickedLocation } = useSelector((state) => state.map);
   const dispatch = useDispatch();
+  const onLogout = async () => {
+    await axios({ url: "/logout", method: "POST" });
+    dispatch(setNavigateLogin(true));
+    dispatch(setToken(""));
+  };
   useEffect(() => {
     dispatch(setMode("add"));
   });
@@ -34,9 +40,7 @@ const ActivitiesContainer = (props) => {
           label="LOGOUT"
           color="#EB1D36"
           width="100px"
-          onClick={() => {
-            navigate("/login", { replace: true });
-          }}
+          onClick={onLogout}
         />
       </div>
       {!clickedLocation && (
@@ -46,7 +50,6 @@ const ActivitiesContainer = (props) => {
       )}
       {clickedLocation && <ActivityForm />}
       <RecentActivities />
-      <div></div>
     </div>
   );
 };

@@ -23,6 +23,7 @@ export const updateActivity = createAsyncThunk(
         },
         headers: {
           "Content-Type": "application/json",
+          Authorization: thunkAPI.getState().authentication.token,
         },
       });
       dispatch(setModal(true));

@@ -9,7 +9,7 @@ import { inputValues, resetInputs } from "../features/loginSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { setModal, setModalTitle, setModalBody } from "../features/modalSlice";
 import Modal from "../components/UI/modal/Modal";
-import { setNavigateLogin } from "../features/authenticationSlice";
+import { setNavigateLogin, setToken } from "../features/authenticationSlice";
 import { useEffect } from "react";
 import { resetData } from "../features/userDataSlice";
 
@@ -21,11 +21,7 @@ const LoginPage = (props) => {
     if (navigateLogin) {
       dispatch(setModal(true));
       dispatch(setModalTitle("Attention! ⚠️"));
-      dispatch(
-        setModalBody(
-          "You have been logged out because the session was over.\nPlease log in again"
-        )
-      );
+      dispatch(setModalBody("You are logged out\nPlease log in"));
     }
     dispatch(setNavigateLogin(false));
   });
@@ -43,7 +39,7 @@ const LoginPage = (props) => {
           "Content-Type": "application/json",
         },
         data: inputs,
-      });
+      }).then((res) => dispatch(setToken(res.headers.authorization)));
       dispatch(resetInputs());
       navigate("/home", { replace: true });
       dispatch(resetData());

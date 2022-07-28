@@ -14,6 +14,7 @@ export const deleteUserActivity = createAsyncThunk(
         data: activityId,
         headers: {
           "Content-Type": "text/plain",
+          Authorization: thunkAPI.getState().authentication.token,
         },
       });
       thunkAPI.dispatch(loadUserActivities());

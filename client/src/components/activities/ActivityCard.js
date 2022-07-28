@@ -46,12 +46,16 @@ const ActivityCard = (props) => {
   }
   return (
     <>
-      <Modal
-        twoButtons
-        btn1Label="NO"
-        btn2Label="YES"
-        onClick={deleteActivity}
-      />
+      {props.showBtns ? (
+        <Modal
+          twoButtons
+          btn1Label="NO"
+          btn2Label="YES"
+          onClick={deleteActivity}
+        />
+      ) : (
+        <Modal btn1Label="Close" />
+      )}
       <div
         className={style["main-container"]}
         onClick={() => {

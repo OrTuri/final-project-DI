@@ -2,14 +2,19 @@ import { Navigate } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { setUserDetails } from "../../features/userDataSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setNavigateLogin } from "../../features/authenticationSlice";
 
 const Authenticate = ({ children }) => {
   const dispatch = useDispatch();
+  const { token } = useSelector((state) => state.authentication);
   const [isAuthorized, setIsAuthorized] = useState(null);
   useEffect(() => {
-    axios({ url: "/auth", method: "POST" })
+    axios({
+      url: "/auth",
+      method: "POST",
+      headers: { Authorization: token },
+    })
       .then((res) => {
         setIsAuthorized(true);
         const { username, fullName, bmr, userId } = res.data;

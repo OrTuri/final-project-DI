@@ -4,6 +4,7 @@ import style from "./MapMainContainer.module.css";
 import { useSelector } from "react-redux";
 import FlyToCard from "./FlyToCard";
 import CustomMarker from "./CustomMarker";
+import FindCurrentLocation from "./FindCurrentLocation";
 const MapMainContainer = (props) => {
   const { cardLocation, cardMarker } = useSelector((state) => state.map);
   const { userActivities } = useSelector((state) => state.userData);
@@ -28,6 +29,7 @@ const MapMainContainer = (props) => {
       {cardLocation && cardMarker && (
         <FlyToCard coords={cardLocation} marker={cardMarker} />
       )}
+      <FindCurrentLocation />
     </MapContainer>
   );
 };
