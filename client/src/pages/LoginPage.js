@@ -11,11 +11,22 @@ import { setModal, setModalTitle, setModalBody } from "../features/modalSlice";
 import Modal from "../components/UI/modal/Modal";
 import { setNavigateLogin } from "../features/authenticationSlice";
 import { useEffect } from "react";
+import { resetData } from "../features/userDataSlice";
 
 const LoginPage = (props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { navigateLogin } = useSelector((state) => state.authentication);
   useEffect(() => {
+    if (navigateLogin) {
+      dispatch(setModal(true));
+      dispatch(setModalTitle("Attention! ⚠️"));
+      dispatch(
+        setModalBody(
+          "You have been logged out because the session was over.\nPlease log in again"
+        )
+      );
+    }
     dispatch(setNavigateLogin(false));
   });
   const handleChange = (e) => {
@@ -25,7 +36,7 @@ const LoginPage = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios({
+      await axios({
         url: "/login/verify",
         method: "POST",
         headers: {
@@ -35,6 +46,7 @@ const LoginPage = (props) => {
       });
       dispatch(resetInputs());
       navigate("/home", { replace: true });
+      dispatch(resetData());
     } catch (err) {
       console.log(err);
       const {

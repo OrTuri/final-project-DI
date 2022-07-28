@@ -1,9 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { setNavigateLogin } from "./authenticationSlice";
 
 export const loadUserActivities = createAsyncThunk(
   "userData/loadUserActivities",
   async (_, thunkAPI) => {
+    const { dispatch } = thunkAPI;
     try {
       const userId = thunkAPI.getState().userData.userDetails.userId;
       const res = await axios({
@@ -13,7 +15,9 @@ export const loadUserActivities = createAsyncThunk(
       });
       return res.data;
     } catch (err) {
-      console.log(err);
+      if (err.response.status === 403) {
+        dispatch(setNavigateLogin(true));
+      }
     }
   }
 );
@@ -21,6 +25,7 @@ export const loadUserActivities = createAsyncThunk(
 export const addUserActivity = createAsyncThunk(
   "userData/addUserActivity",
   async (formData, thunkAPI) => {
+    const { dispatch } = thunkAPI;
     try {
       const { bmr } = thunkAPI.getState().userData.userDetails;
       const caloriesBurned = (
@@ -43,7 +48,9 @@ export const addUserActivity = createAsyncThunk(
       });
       return res.data;
     } catch (err) {
-      console.log(err);
+      if (err.response.status === 403) {
+        dispatch(setNavigateLogin(true));
+      }
     }
   }
 );
@@ -80,6 +87,9 @@ const userDataSlice = createSlice({
         marker: action.payload.marker,
       });
     },
+    resetData: (state, action) => {
+      return initialState;
+    },
   },
   extraReducers: {
     [loadUserActivities.fulfilled]: (state, action) => {
@@ -96,6 +106,7 @@ export const {
   setAddInputValues,
   resetAddInputValues,
   addMarkers,
+  resetData,
 } = userDataSlice.actions;
 
 export default userDataSlice.reducer;

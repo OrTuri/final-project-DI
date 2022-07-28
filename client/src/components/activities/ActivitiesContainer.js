@@ -34,7 +34,9 @@ const ActivitiesContainer = (props) => {
           label="LOGOUT"
           color="#EB1D36"
           width="100px"
-          onClick={() => navigate("/login", { replace: true })}
+          onClick={() => {
+            navigate("/login", { replace: true });
+          }}
         />
       </div>
       {!clickedLocation && (

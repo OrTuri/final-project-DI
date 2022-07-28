@@ -3,10 +3,10 @@ import RegisterPage from "./pages/RegisterPage";
 import HomePage from "./pages/HomePage";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Authenticate from "./components/authenticate/Authenticate";
-import AllActivities from "./components/activities/AllActivitiesContainer";
 import ActivitiesContainer from "./components/activities/ActivitiesContainer";
 import EditActivity from "./components/activities/EditActivity";
 import { useSelector } from "react-redux";
+import AllActivitiesContainer from "./components/activities/AllActivitiesContainer";
 
 const App = () => {
   const { navigateLogin } = useSelector((state) => state.authentication);
@@ -23,9 +23,30 @@ const App = () => {
             </Authenticate>
           }
         >
-          <Route path="all" element={<AllActivities />} />
-          <Route path="" element={<ActivitiesContainer />} />
-          <Route path="edit/:activityId" element={<EditActivity />} />
+          <Route
+            path="all"
+            element={
+              <Authenticate>
+                <AllActivitiesContainer />
+              </Authenticate>
+            }
+          />
+          <Route
+            path=""
+            element={
+              <Authenticate>
+                <ActivitiesContainer />
+              </Authenticate>
+            }
+          />
+          <Route
+            path="edit/:activityId"
+            element={
+              <Authenticate>
+                <EditActivity />
+              </Authenticate>
+            }
+          />
         </Route>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
