@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const dotenv = require("dotenv").config();
+const path = require("path");
 const loginRouter = require("./routes/login");
 const registerRouter = require("./routes/register");
 const authRouter = require("./routes/auth");
@@ -17,7 +18,7 @@ app.listen(process.env.PORT || 4000, () => {
 app.use(
   cors({
     credentials: true,
-    origin: "http://localhost:3000",
+    origin: "https://exercises-tracking-app.herokuapp.com",
     exposedHeaders: ["Authorization"],
   })
 );
@@ -31,3 +32,9 @@ app.use("/register", registerRouter);
 app.use("/auth", authRouter);
 app.use("/activities", activitiesRouter);
 app.use("/logout", logoutRouter);
+
+app.use("/", express.static(path.resolve(__dirname, "./client/build")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "./client/build"));
+});
