@@ -14,7 +14,13 @@ app.listen(process.env.PORT || 4000, () => {
   console.log(`Server is currently running on port ${process.env.PORT}`);
 });
 
-app.use(cors());
+app.use(
+  cors({
+    credentials: true,
+    origin: "http://localhost:3000",
+    exposedHeaders: ["Authorization"],
+  })
+);
 app.use(bodyParser.text());
 app.use(cookieParser());
 app.use(express.json());

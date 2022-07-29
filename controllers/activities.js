@@ -18,7 +18,6 @@ const sendActivities = async (req, res) => {
 };
 
 const addActivity = (req, res) => {
-  console.log(req.body);
   const {
     userId: user_id,
     activity: activity_name,
@@ -52,7 +51,6 @@ const deleteActivity = (req, res) => {
 };
 
 const editActivity = (req, res) => {
-  console.log(req.body);
   const { activityId, duration, coords, date, activity, caloriesBurned } =
     req.body;
   updateRecord(

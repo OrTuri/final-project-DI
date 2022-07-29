@@ -9,9 +9,10 @@ export const deleteUserActivity = createAsyncThunk(
     const { dispatch } = thunkAPI;
     try {
       await axios({
-        url: "/activities/del",
+        url: `${process.env.REACT_APP_PROXY}/activities/del`,
         method: "DELETE",
         data: activityId,
+        withCredentials: true,
         headers: {
           "Content-Type": "text/plain",
           Authorization: thunkAPI.getState().authentication.token,

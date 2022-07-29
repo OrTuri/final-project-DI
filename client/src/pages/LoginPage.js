@@ -33,13 +33,17 @@ const LoginPage = (props) => {
     e.preventDefault();
     try {
       await axios({
-        url: "/login/verify",
+        url: `${process.env.REACT_APP_PROXY}/login/verify`,
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
+        withCredentials: true,
         data: inputs,
-      }).then((res) => dispatch(setToken(res.headers.authorization)));
+      }).then((res) => {
+        console.log(res);
+        dispatch(setToken(res.headers.authorization));
+      });
       dispatch(resetInputs());
       navigate("/home", { replace: true });
       dispatch(resetData());

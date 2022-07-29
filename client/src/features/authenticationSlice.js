@@ -8,6 +8,7 @@ const AuthenticationSlice = createSlice({
   reducers: {
     setToken: (state, action) => {
       state.token = action.payload;
+      console.log(action);
     },
     setNavigateLogin: (state, action) => {
       state.navigateLogin = action.payload;

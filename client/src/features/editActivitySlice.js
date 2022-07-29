@@ -15,8 +15,9 @@ export const updateActivity = createAsyncThunk(
         (Number(data.duration) / 60)
       ).toFixed(0);
       const res = await axios({
-        url: "/activities/edit",
+        url: `${process.env.REACT_APP_PROXY}/activities/edit`,
         method: "PUT",
+        withCredentials: true,
         data: {
           ...data,
           caloriesBurned,

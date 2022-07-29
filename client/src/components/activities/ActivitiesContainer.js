@@ -15,7 +15,10 @@ const ActivitiesContainer = (props) => {
   const { clickedLocation } = useSelector((state) => state.map);
   const dispatch = useDispatch();
   const onLogout = async () => {
-    await axios({ url: "/logout", method: "POST" });
+    await axios({
+      url: `${process.env.REACT_APP_PROXY}/logout`,
+      method: "POST",
+    });
     dispatch(setNavigateLogin(true));
     dispatch(setToken(""));
   };

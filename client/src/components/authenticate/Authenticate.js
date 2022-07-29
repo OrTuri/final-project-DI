@@ -11,9 +11,10 @@ const Authenticate = ({ children }) => {
   const [isAuthorized, setIsAuthorized] = useState(null);
   useEffect(() => {
     axios({
-      url: "/auth",
+      url: `${process.env.REACT_APP_PROXY}/auth`,
       method: "POST",
-      headers: { Authorization: token },
+      // headers: { Authorization: token },
+      withCredentials: true,
     })
       .then((res) => {
         setIsAuthorized(true);
