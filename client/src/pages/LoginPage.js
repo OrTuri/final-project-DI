@@ -33,7 +33,7 @@ const LoginPage = (props) => {
     e.preventDefault();
     try {
       await axios({
-        url: `${process.env.REACT_APP_PROXY}/login/verify`,
+        url: `${process.env.REACT_APP_PROXY || ""}/login/verify`,
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -54,7 +54,6 @@ const LoginPage = (props) => {
           data: { msg: errorMsg },
         },
       } = err;
-      console.log(errorMsg);
       dispatch(setModal(true));
       dispatch(setModalTitle("ERROR! ⚠️"));
       dispatch(setModalBody(errorMsg));

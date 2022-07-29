@@ -9,7 +9,7 @@ export const loadUserActivities = createAsyncThunk(
     try {
       const userId = thunkAPI.getState().userData.userDetails.userId;
       const res = await axios({
-        url: `${process.env.REACT_APP_PROXY}/activities/all`,
+        url: `${process.env.REACT_APP_PROXY || ""}/activities/all`,
         method: "POST",
         data: { userId },
         withCredentials: true,
@@ -44,7 +44,7 @@ export const addUserActivity = createAsyncThunk(
         userId: thunkAPI.getState().userData.userDetails.userId,
       };
       const res = await axios({
-        url: `${process.env.REACT_APP_PROXY}/activities/add`,
+        url: `${process.env.REACT_APP_PROXY || ""}/activities/add`,
         method: "POST",
         data: activity,
         withCredentials: true,

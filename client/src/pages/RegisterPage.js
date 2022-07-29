@@ -22,7 +22,7 @@ const RegisterPage = (props) => {
     e.preventDefault();
     try {
       const res = await axios({
-        url: `${process.env.REACT_APP_PROXY}/register`,
+        url: `${process.env.REACT_APP_PROXY || ""}/register`,
         method: "POST",
         data: inputs,
       });
