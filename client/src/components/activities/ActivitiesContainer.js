@@ -18,6 +18,7 @@ const ActivitiesContainer = (props) => {
     await axios({
       url: `${process.env.REACT_APP_PROXY || ""}/logout`,
       method: "POST",
+      withCredentials: true,
     });
     dispatch(setNavigateLogin(true));
     dispatch(setToken(""));

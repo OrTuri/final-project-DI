@@ -41,7 +41,6 @@ const LoginPage = (props) => {
         withCredentials: true,
         data: inputs,
       }).then((res) => {
-        console.log(res);
         dispatch(setToken(res.headers.authorization));
       });
       dispatch(resetInputs());

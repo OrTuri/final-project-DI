@@ -18,7 +18,7 @@ app.listen(process.env.PORT || 4000, () => {
 app.use(
   cors({
     credentials: true,
-    origin: "https://exercises-tracking-app.herokuapp.com",
+    origin: "http://localhost:3000",
     exposedHeaders: ["Authorization"],
   })
 );
