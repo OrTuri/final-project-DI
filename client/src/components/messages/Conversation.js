@@ -3,46 +3,74 @@ import { Link } from "react-router-dom";
 import Button from "../UI/Form/Button";
 import Input from "../UI/Form/Input";
 import { useSelector, useDispatch } from "react-redux";
-import { setMessageValue, sendMessage } from "../../features/messagesSlice";
-import { useEffect } from "react";
+import {
+  setMessageValue,
+  sendMessage,
+  getMessages,
+} from "../../features/messagesSlice";
+import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Conversation = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { messageValue, receiverUserId } = useSelector(
-    (state) => state.messages
-  );
+  const scrollRef = useRef(null);
+  const { messageValue, receiverUserId, messages, receiverUsername } =
+    useSelector((state) => state.messages);
+
+  useEffect(() => {
+    scrollRef?.current.scrollIntoView();
+  }, [messages]);
+
   useEffect(() => {
     if (!receiverUserId) {
       navigate("/home/messages", { replace: true });
     }
+
+    dispatch(getMessages());
+
+    const loadMessagesInterval = setInterval(() => {
+      dispatch(getMessages());
+    }, 10000);
+
+    return () => {
+      clearInterval(loadMessagesInterval);
+    };
   }, []);
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(sendMessage(messageValue));
+    dispatch(setMessageValue(""));
   };
   return (
     <div className={style.container}>
-      <h1 className={style["main-heading"]}>Conversation</h1>
+      <h1 className={style["main-heading"]}>
+        Your conversation with {receiverUsername}
+      </h1>
       <Link to="/home/messages" className={style.link}>
         <Button label="Go Back" width="100px" />
       </Link>
       <div className={style["messages-container"]}>
-        <div className={style["other-user-message"]}>
-          <p>
-            gsdfgdfsh dfgjkdsfgkdfsng dfgkdfgnjfghfg dfgjdfngkj g fsdgksjdaf
-            gbsdfbsd jdfbgjr xvfdg
-          </p>
-          <p className={style["message-date"]}>sep 12, 2022, 16:57</p>
-        </div>
-        <div className={style["current-user-message"]}>
-          <p>
-            gsdfgdfsh dfgjkdsfgkdfsng dfgkdfgnjfghfg dfgjdfngkj g fsdgksjdaf
-            gbsdfbsd jdfbgjr xvfdg
-          </p>
-          <p className={style["message-date"]}>sep 12, 2022, 16:57</p>
-        </div>
+        {messages.map((message) => {
+          return (
+            <div
+              className={
+                style[
+                  `${
+                    message.from_user_id === receiverUserId
+                      ? "other"
+                      : "current"
+                  }-user-message`
+                ]
+              }
+              key={message.messages_id}
+            >
+              <p>{message.message_content}</p>
+              <p className={style["message-date"]}>{message.date}</p>
+            </div>
+          );
+        })}
+        <div ref={scrollRef}></div>
       </div>
       <form className={style["send-message-form"]} onSubmit={submitHandler}>
         <Input

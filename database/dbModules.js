@@ -4,6 +4,10 @@ const getPropertyFromDB = (table, column, where) => {
   return db(table).select(column).where(where);
 };
 
+const getPropertyFromDBWithOrWhere = (table, column, where, orWhere) => {
+  return db(table).select(column).where(where).orWhere(orWhere);
+};
+
 const pushDataToDB = (table, insertValue) => {
   return db(table).insert(insertValue).returning("*");
 };
@@ -26,4 +30,6 @@ module.exports = {
   deleteFromDB,
   updateRecord,
   searchRecordsWhereIlike,
+  getPropertyFromDBWithOrWhere,
+  db,
 };
