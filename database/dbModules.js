@@ -16,9 +16,14 @@ const updateRecord = (table, where, update) => {
   return db(table).where(where).update(update).returning("*");
 };
 
+const searchRecordsWhereIlike = (table, column, property, searchValue) => {
+  return db(table).select(column).whereILike(property, searchValue);
+};
+
 module.exports = {
   getPropertyFromDB,
   pushDataToDB,
   deleteFromDB,
   updateRecord,
+  searchRecordsWhereIlike,
 };

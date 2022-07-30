@@ -31,21 +31,18 @@ const ActivitiesContainer = (props) => {
   }, [dispatch]);
   return (
     <div className={style["activities-container"]}>
+      <h1 className={style["main-heading"]}>
+        Welcome {userDetails.fullName.split(" ")[0]}!
+      </h1>
       <div className={style["heading-container"]}>
         <div className={style.btn}>
           <Link to="/home/all" className={style.link}>
-            <Button label="All Activities" color="#EC994B" />
+            <Button label="All Activities" color="#EC994B" width="120px" />
           </Link>
         </div>
-        <h1 className={style["main-heading"]}>
-          Welcome {userDetails.fullName.split(" ")[0]}!
-        </h1>
-        <Button
-          label="LOGOUT"
-          color="#EB1D36"
-          width="100px"
-          onClick={onLogout}
-        />
+        <Link to="/home/messages" className={style.link}>
+          <Button label="Messages" color="#EF5B0C" width="120px" />
+        </Link>
       </div>
       {!clickedLocation && (
         <h2 className={style["add-activity-title"]}>
@@ -54,6 +51,14 @@ const ActivitiesContainer = (props) => {
       )}
       {clickedLocation && <ActivityForm />}
       <RecentActivities />
+      <Link to="" className={style.link}>
+        <Button
+          label="LOGOUT"
+          color="#EB1D36"
+          width="120px"
+          onClick={onLogout}
+        />
+      </Link>
     </div>
   );
 };

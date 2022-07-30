@@ -8,6 +8,7 @@ import mapSlice from "../features/mapSlice";
 import filterActivityReducer from "../features/filterActivitySlice";
 import deleteActivityReducer from "../features/deleteActivitySlice";
 import editActivityReducer from "../features/editActivitySlice";
+import messagesReducer from "../features/messagesSlice";
 
 const store = configureStore({
   reducer: {
@@ -20,6 +21,7 @@ const store = configureStore({
     filterActivity: filterActivityReducer,
     deleteActivity: deleteActivityReducer,
     editActivity: editActivityReducer,
+    messages: messagesReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
