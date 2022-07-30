@@ -32,12 +32,18 @@ const postLogin = async (req, res) => {
 
   const userData = { username, fullName, bmr, userId };
 
-  const jwtToken = jwt.sign(userData, process.env.JWT_SECRET, {
-    expiresIn: "0.5h",
-  });
+  const jwtToken = jwt.sign(
+    {
+      ...userData,
+      exp:
+        Math.floor(Date.now() / 1000) + 60 * process.env.TOKEN_EXPIRATION_MINS,
+    },
+    process.env.JWT_SECRET
+  );
 
   res.cookie("token", jwtToken, {
     httpOnly: true,
+    maxAge: process.env.TOKEN_EXPIRATION_MINS * 60 * 1000,
   });
 
   res.set("Authorization", jwtToken);

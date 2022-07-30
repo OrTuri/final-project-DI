@@ -16,11 +16,12 @@
 
 .main-heading {
   font-family: "Roboto", sans-serif;
-  font-size: 30px;
+  font-size: 40px;
   margin-top: 20px;
   text-align: center;
   grid-column: 2;
   width: 300px;
+  text-shadow: 14px 7px 12px rgb(0 0 0 / 34%);
 }
 
 .add-activity-title {
