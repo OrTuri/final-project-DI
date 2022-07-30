@@ -18,7 +18,7 @@ const MessagesContainer = () => {
   };
   return (
     <div className={style["messages-container"]}>
-      <h1 className={style["main-heading"]}>MESSAGES</h1>
+      <h1 className={style["main-heading"]}>Messages</h1>
       <Link to="/home" className={style.link}>
         <Button label="Go Back" width="100px" />
       </Link>

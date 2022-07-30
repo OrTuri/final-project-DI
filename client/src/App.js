@@ -8,6 +8,7 @@ import EditActivity from "./components/activities/EditActivity";
 import { useSelector } from "react-redux";
 import AllActivitiesContainer from "./components/activities/AllActivitiesContainer";
 import MessagesContainer from "./components/messages/MessagesContainer";
+import Conversation from "./components/messages/Conversation";
 
 const App = () => {
   const { navigateLogin } = useSelector((state) => state.authentication);
@@ -56,6 +57,7 @@ const App = () => {
               </Authenticate>
             }
           />
+          <Route path="messages/conversation" element={<Conversation />} />
         </Route>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />

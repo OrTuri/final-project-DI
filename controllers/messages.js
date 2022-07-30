@@ -16,4 +16,8 @@ const searchUsers = (req, res) => {
     });
 };
 
-module.exports = { searchUsers };
+const sendMessage = (req, res) => {
+  console.log(req.body);
+};
+
+module.exports = { searchUsers, sendMessage };

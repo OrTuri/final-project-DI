@@ -1,6 +1,15 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+export const sendMessage = createAsyncThunk(
+  "messages/sendMessage",
+  async (message, thunkAPI) => {
+    const senderUserId = thunkAPI.getState().userData.userDetails.userId;
+    const receiverUserId = thunkAPI.getState().messages.currentConversationId;
+    console.log(receiverUserId);
+  }
+);
+
 export const searchUsers = createAsyncThunk(
   "messages/searchUsers",
   async (_, thunkAPI) => {
@@ -22,6 +31,8 @@ export const searchUsers = createAsyncThunk(
 const initialState = {
   searchValue: "",
   searchUsersList: [],
+  receiverUserId: null,
+  messageValue: "",
 };
 
 const messagesSlice = createSlice({
@@ -31,15 +42,22 @@ const messagesSlice = createSlice({
     setSearchValue: (state, action) => {
       state.searchValue = action.payload;
     },
+    setReceiverUserId: (state, action) => {
+      state.receiverUserId = action.payload;
+      console.log("receiverUserId =>>>", action.payload);
+    },
+    setMessageValue: (state, action) => {
+      state.messageValue = action.payload;
+    },
   },
   extraReducers: {
     [searchUsers.fulfilled]: (state, action) => {
       state.searchUsersList = action.payload;
-      console.log(action.payload);
     },
   },
 });
 
-export const { setSearchValue } = messagesSlice.actions;
+export const { setSearchValue, setReceiverUserId, setMessageValue } =
+  messagesSlice.actions;
 
 export default messagesSlice.reducer;

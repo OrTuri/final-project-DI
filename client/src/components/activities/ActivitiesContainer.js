@@ -9,9 +9,10 @@ import { Link } from "react-router-dom";
 import { setMode } from "../../features/mapSlice";
 import axios from "axios";
 import { setNavigateLogin, setToken } from "../../features/authenticationSlice";
+import Loader from "../loader/Loader";
 
 const ActivitiesContainer = (props) => {
-  const { userDetails } = useSelector((state) => state.userData);
+  const { userDetails, loading } = useSelector((state) => state.userData);
   const { clickedLocation } = useSelector((state) => state.map);
   const dispatch = useDispatch();
   const onLogout = async () => {
@@ -58,6 +59,7 @@ const ActivitiesContainer = (props) => {
           width="120px"
           onClick={onLogout}
         />
+        {loading && <Loader />}
       </Link>
     </div>
   );
