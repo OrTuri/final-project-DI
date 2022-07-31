@@ -59,8 +59,8 @@ const ActivitiesContainer = (props) => {
           width="120px"
           onClick={onLogout}
         />
-        {loading && <Loader />}
       </Link>
+      {loading && <Loader />}
     </div>
   );
 };

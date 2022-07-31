@@ -11,16 +11,17 @@ import {
 import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { AiFillMessage } from "react-icons/ai";
+import Loader from "../loader/Loader";
 
 const Conversation = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const scrollRef = useRef(null);
-  const { messageValue, receiverUserId, messages, receiverUsername } =
+  const { messageValue, receiverUserId, messages, receiverUsername, loading } =
     useSelector((state) => state.messages);
 
   useEffect(() => {
-    scrollRef?.current.scrollIntoView();
+    scrollRef?.current.scrollIntoView(false);
   }, [messages]);
 
   useEffect(() => {
@@ -45,7 +46,6 @@ const Conversation = () => {
   };
   return (
     <div className={style.container}>
-      <div className={style["heading-container"]}></div>
       <h1 className={style["main-heading"]}>
         <AiFillMessage size="1.5em" color="#2B7A0B" /> {receiverUsername}
       </h1>
@@ -77,6 +77,7 @@ const Conversation = () => {
             </div>
           );
         })}
+
         <div ref={scrollRef}></div>
       </div>
       <form className={style["send-message-form"]} onSubmit={submitHandler}>

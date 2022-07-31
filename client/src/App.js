@@ -57,7 +57,14 @@ const App = () => {
               </Authenticate>
             }
           />
-          <Route path="messages/conversation" element={<Conversation />} />
+          <Route
+            path="messages/conversation"
+            element={
+              <Authenticate>
+                <Conversation />
+              </Authenticate>
+            }
+          />
         </Route>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />

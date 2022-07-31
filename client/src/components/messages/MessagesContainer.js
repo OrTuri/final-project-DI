@@ -7,18 +7,28 @@ import {
   setSearchValue,
   searchUsers,
   setMessages,
+  getRecentMessages,
 } from "../../features/messagesSlice";
 import { useSelector, useDispatch } from "react-redux";
 import SearchCard from "./SearchCard";
 import RecentConversations from "./RecentConversations";
 import { useEffect } from "react";
+import Loader from "../loader/Loader";
+import { loadUserActivities } from "../../features/userDataSlice";
 
 const MessagesContainer = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(setMessages([]));
+    const getRecentMessagesInterval = setInterval(() => {
+      dispatch(getRecentMessages());
+    }, 10000);
+    dispatch(loadUserActivities());
+    return () => {
+      clearInterval(getRecentMessagesInterval);
+    };
   }, []);
-  const { searchValue, searchUsersList } = useSelector(
+  const { searchValue, searchUsersList, loading } = useSelector(
     (state) => state.messages
   );
   const searchSubmitHandler = (e) => {
@@ -53,6 +63,7 @@ const MessagesContainer = () => {
       {searchUsersList.map(({ username, user_id: id }, index) => (
         <SearchCard key={id} label={username} id={id} />
       ))}
+      {loading && <Loader />}
       <RecentConversations />
     </div>
   );

@@ -138,8 +138,12 @@ const messagesSlice = createSlice({
       state.receiverUsername = action.payload.username.username;
       state.loading = false;
     },
+    [getRecentMessages.pending]: (state, action) => {
+      state.loading = true;
+    },
     [getRecentMessages.fulfilled]: (state, action) => {
       state.recentMessages = action.payload;
+      state.loading = false;
     },
   },
 });
