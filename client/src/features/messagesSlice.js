@@ -125,6 +125,9 @@ const messagesSlice = createSlice({
     setDeleteReceiverId: (state, action) => {
       state.deleteReceiverId = action.payload;
     },
+    resetSearchUsersList: (state, action) => {
+      state.searchUsersList = [];
+    },
   },
   extraReducers: {
     [searchUsers.fulfilled]: (state, action) => {
@@ -154,6 +157,7 @@ export const {
   setMessageValue,
   setMessages,
   setDeleteReceiverId,
+  resetSearchUsersList,
 } = messagesSlice.actions;
 
 export default messagesSlice.reducer;

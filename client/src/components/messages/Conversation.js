@@ -56,6 +56,7 @@ const Conversation = () => {
         {messages.length < 1 && (
           <p className={style["no-messages"]}>No messages yet...</p>
         )}
+        {/* {loading && <Loader />} */}
         {messages.map((message) => {
           return (
             <div
@@ -77,7 +78,6 @@ const Conversation = () => {
             </div>
           );
         })}
-
         <div ref={scrollRef}></div>
       </div>
       <form className={style["send-message-form"]} onSubmit={submitHandler}>

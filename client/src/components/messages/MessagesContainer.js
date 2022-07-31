@@ -8,6 +8,7 @@ import {
   searchUsers,
   setMessages,
   getRecentMessages,
+  resetSearchUsersList,
 } from "../../features/messagesSlice";
 import { useSelector, useDispatch } from "react-redux";
 import SearchCard from "./SearchCard";
@@ -26,6 +27,7 @@ const MessagesContainer = () => {
     dispatch(loadUserActivities());
     return () => {
       clearInterval(getRecentMessagesInterval);
+      dispatch(resetSearchUsersList());
     };
   }, []);
   const { searchValue, searchUsersList, loading } = useSelector(
@@ -63,7 +65,7 @@ const MessagesContainer = () => {
       {searchUsersList.map(({ username, user_id: id }, index) => (
         <SearchCard key={id} label={username} id={id} />
       ))}
-      {loading && <Loader />}
+      {/* {loading && <Loader />} */}
       <RecentConversations />
     </div>
   );
