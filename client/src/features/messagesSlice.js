@@ -1,5 +1,26 @@
-import { createSlice, createAsyncThunk, current } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+
+export const deleteMessages = createAsyncThunk(
+  "messages/deleteMessages",
+  async (receiverId, thunkAPI) => {
+    try {
+      const res = await axios({
+        url: `${process.env.REACT_APP_PROXY || ""}/messages/delete`,
+        withCredentials: true,
+        headers: {
+          Authorization: thunkAPI.getState().authentication.token,
+        },
+        data: {
+          receiverId,
+          senderId: thunkAPI.getState().userData.userDetails.userId,
+        },
+        method: "DELETE",
+      });
+      thunkAPI.dispatch(getRecentMessages());
+    } catch (err) {}
+  }
+);
 
 export const getRecentMessages = createAsyncThunk(
   "messages/getRecentMessages",
@@ -82,6 +103,7 @@ const initialState = {
   recentMessages: [],
   receiverUsername: "",
   loading: false,
+  deleteReceiverId: null,
 };
 
 const messagesSlice = createSlice({
@@ -99,6 +121,9 @@ const messagesSlice = createSlice({
     },
     setMessages: (state, action) => {
       state.messages = action.payload;
+    },
+    setDeleteReceiverId: (state, action) => {
+      state.deleteReceiverId = action.payload;
     },
   },
   extraReducers: {
@@ -124,6 +149,7 @@ export const {
   setReceiverUserId,
   setMessageValue,
   setMessages,
+  setDeleteReceiverId,
 } = messagesSlice.actions;
 
 export default messagesSlice.reducer;

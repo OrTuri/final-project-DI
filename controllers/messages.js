@@ -87,4 +87,30 @@ const recentMessages = (req, res) => {
     });
 };
 
-module.exports = { searchUsers, sendMessage, getMessages, recentMessages };
+const deleteMessages = (req, res) => {
+  const { receiverId, senderId } = req.body;
+  db("exercise_tracking_messages")
+    .where({
+      from_user_id: senderId,
+      to_user_id: receiverId,
+    })
+    .orWhere({
+      from_user_id: receiverId,
+      to_user_id: senderId,
+    })
+    .del()
+    .then((result) => {
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      res.sendStatus(403);
+    });
+};
+
+module.exports = {
+  searchUsers,
+  sendMessage,
+  getMessages,
+  recentMessages,
+  deleteMessages,
+};

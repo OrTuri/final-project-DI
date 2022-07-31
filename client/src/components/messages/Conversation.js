@@ -11,7 +11,6 @@ import {
 import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { AiFillMessage } from "react-icons/ai";
-import Loader from "../loader/Loader";
 
 const Conversation = () => {
   const dispatch = useDispatch();
@@ -54,7 +53,9 @@ const Conversation = () => {
         <Button label="Go Back" width="100px" margin="0" />
       </Link>
       <div className={style["messages-container"]}>
-        {loading && <Loader />}
+        {messages.length < 1 && (
+          <p className={style["no-messages"]}>No messages yet...</p>
+        )}
         {messages.map((message) => {
           return (
             <div
