@@ -1,4 +1,4 @@
-.activities-container {
+.messages-container {
   width: 90%;
   height: 90vh;
   padding: 10px;
@@ -14,35 +14,6 @@
   overflow: auto;
 }
 
-.link {
-  text-decoration: none;
-}
-
-.select {
-  padding: 5px;
-  border-radius: 10px;
-  border: none;
-  box-shadow: 0 0 20px 2px rgb(0 0 0 / 26%);
-  transition: all 0.3s;
-}
-
-.select:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 20px 10px rgb(0 0 0 / 26%);
-}
-
-.select:focus {
-  outline: none;
-}
-
-.filter {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-}
-
 .main-heading {
   font-family: "Roboto", sans-serif;
   font-size: 40px;
@@ -51,4 +22,15 @@
   grid-column: 2;
   width: 300px;
   text-shadow: 14px 7px 12px rgb(0 0 0 / 34%);
+}
+
+.link {
+  text-decoration: none;
+}
+
+.search-users-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }

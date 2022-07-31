@@ -1,0 +1,80 @@
+.container {
+  width: 90%;
+  height: 90vh;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px 2px rgb(0 0 0 / 28%);
+  margin-top: 20px;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 15px;
+  overflow: auto;
+}
+
+.main-heading {
+  font-family: "Roboto", sans-serif;
+  font-size: 25px;
+  /* margin-top: 20px; */
+  text-align: center;
+  grid-column: 2;
+  width: 100%;
+  text-shadow: 14px 7px 12px rgb(0 0 0 / 34%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.link {
+  text-decoration: none;
+}
+
+.send-message-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: auto;
+  width: 90%;
+}
+
+.messages-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: rgba(250, 235, 215, 0.631);
+  height: 100%;
+  width: 100%;
+  border-radius: 20px;
+  overflow: auto;
+  padding: 20px;
+}
+
+.other-user-message {
+  background-color: rgba(103, 143, 130, 0.275);
+  width: 60%;
+  border-radius: 20px;
+  padding: 10px;
+  margin-top: auto;
+}
+
+.current-user-message {
+  margin-top: auto;
+  background-color: rgba(97, 133, 182, 0.275);
+  width: 60%;
+  border-radius: 20px;
+  padding: 10px;
+  margin-left: auto;
+}
+
+.message-date {
+  font-size: 15px;
+  margin-top: 15px;
+}
+.no-messages {
+  text-align: center;
+  margin-top: auto;
+}

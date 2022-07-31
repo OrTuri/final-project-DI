@@ -7,6 +7,8 @@ import ActivitiesContainer from "./components/activities/ActivitiesContainer";
 import EditActivity from "./components/activities/EditActivity";
 import { useSelector } from "react-redux";
 import AllActivitiesContainer from "./components/activities/AllActivitiesContainer";
+import MessagesContainer from "./components/messages/MessagesContainer";
+import Conversation from "./components/messages/Conversation";
 
 const App = () => {
   const { navigateLogin } = useSelector((state) => state.authentication);
@@ -44,6 +46,22 @@ const App = () => {
             element={
               <Authenticate>
                 <EditActivity />
+              </Authenticate>
+            }
+          />
+          <Route
+            path="messages"
+            element={
+              <Authenticate>
+                <MessagesContainer />
+              </Authenticate>
+            }
+          />
+          <Route
+            path="messages/conversation"
+            element={
+              <Authenticate>
+                <Conversation />
               </Authenticate>
             }
           />

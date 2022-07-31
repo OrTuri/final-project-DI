@@ -15,17 +15,17 @@ const AllActivitiesContainer = (props) => {
   });
   useEffect(() => {
     dispatch(loadUserActivities());
-  }, []);
+  }, [dispatch]);
   const changeHandler = (e) => {
     dispatch(setSelectValue(e.target.value));
   };
   const { selectValue } = useSelector((state) => state.filterActivity);
   return (
     <div className={style["activities-container"]}>
+      <h1 className={style["main-heading"]}>All Activities</h1>
       <Link to="/home" className={style.link}>
         <Button label="Go Back" width="100px" />
       </Link>
-      <h1 className={style["main-heading"]}>All Activities</h1>
       <div className={style.filter}>
         <label htmlFor="filter">Sort By</label>
         <select

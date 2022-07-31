@@ -4,7 +4,6 @@ const bcrypt = require("bcrypt");
 const postRegister = async (req, res) => {
   const { username, password, age, weight, height, gender, fullName } =
     req.body;
-  console.log(req.body);
   const isUsernameExist =
     (
       await getPropertyFromDB("exercise_tracking_users", "username", {
@@ -28,7 +27,7 @@ const postRegister = async (req, res) => {
     password: hashPassword,
     bmr: Math.trunc(bmr),
     full_name: fullName,
-  }).then((res) => console.log(res));
+  }).then((res) => {});
   res.status(200).send();
 };
 

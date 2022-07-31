@@ -60,6 +60,7 @@ export const addUserActivity = createAsyncThunk(
 );
 
 const initialState = {
+  loading: false,
   userDetails: {},
   userActivities: [],
   markers: [],
@@ -98,6 +99,10 @@ const userDataSlice = createSlice({
   extraReducers: {
     [loadUserActivities.fulfilled]: (state, action) => {
       state.userActivities = action.payload;
+      state.loading = false;
+    },
+    [loadUserActivities.pending]: (state, action) => {
+      state.loading = true;
     },
     [addUserActivity.fulfilled]: (state, action) => {
       state.userActivities = action.payload;
