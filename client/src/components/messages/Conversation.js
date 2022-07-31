@@ -66,7 +66,9 @@ const Conversation = () => {
               key={message.messages_id}
             >
               <p>{message.message_content}</p>
-              <p className={style["message-date"]}>{message.date}</p>
+              <p className={style["message-date"]}>
+                {new Date(message.date).toLocaleString("he-il")}
+              </p>
             </div>
           );
         })}

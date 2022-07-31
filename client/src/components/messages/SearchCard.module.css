@@ -4,12 +4,13 @@
   border-radius: 10px;
   box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.186);
   cursor: pointer;
-  flex-direction: column;
   margin-bottom: 10px;
   transition: all 0.3s;
   width: 200px;
   justify-content: center;
   align-items: center;
+  gap: 10px;
+  position: relative;
 }
 
 .container:hover {

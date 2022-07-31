@@ -43,10 +43,40 @@ const getMessages = (req, res) => {
       to_user_id: receiverUserId,
     })
     .orWhere({ from_user_id: receiverUserId, to_user_id: senderUserId })
-    .innerJoin("exercise_tracking_users", "from_user_id", "=", "user_id")
-    .then((result) => {
-      res.json(result);
+    .then((messages) => {
+      db("exercise_tracking_users")
+        .select("username")
+        .where({ user_id: receiverUserId })
+        .then((username) => {
+          res.json({ messages, username: username[0] });
+        });
     });
 };
 
-module.exports = { searchUsers, sendMessage, getMessages };
+const recentMessages = (req, res) => {
+  const id = Number(req.body);
+  db("exercise_tracking_messages")
+    .select("*")
+    .where({ from_user_id: id })
+    .orWhere({ to_user_id: id })
+    .orderBy("date", "desc")
+    .then((result) => {
+      const ids = [];
+      const recentMessages = result.reduce((acc, curr) => {
+        if (!ids.includes(curr.from_user_id) && curr.from_user_id !== id) {
+          ids.push(curr.from_user_id);
+          return [...acc, curr];
+        }
+
+        if (!ids.includes(curr.to_user_id) && curr.to_user_id !== id) {
+          ids.push(curr.to_user_id);
+          return [...acc, curr];
+        }
+
+        return acc;
+      }, []);
+      res.json(recentMessages);
+    });
+};
+
+module.exports = { searchUsers, sendMessage, getMessages, recentMessages };

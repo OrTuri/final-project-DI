@@ -1,6 +1,24 @@
 import { createSlice, createAsyncThunk, current } from "@reduxjs/toolkit";
 import axios from "axios";
 
+export const getRecentMessages = createAsyncThunk(
+  "messages/getRecentMessages",
+  async (_, thunkAPI) => {
+    const id = thunkAPI.getState().userData.userDetails.userId;
+    const res = await axios({
+      url: `${process.env.REACT_APP_PROXY || ""}/messages/recentMessages`,
+      withCredentials: true,
+      headers: {
+        Authorization: thunkAPI.getState().authentication.token,
+        "Content-Type": "text/plain",
+      },
+      data: id,
+      method: "POST",
+    });
+    const messages = res.data;
+  }
+);
+
 export const getMessages = createAsyncThunk(
   "messages/getMessages",
   async (_, thunkAPI) => {
@@ -16,7 +34,6 @@ export const getMessages = createAsyncThunk(
       method: "POST",
     });
     const messages = res.data;
-    console.log(messages);
     return messages;
   }
 );
@@ -26,8 +43,6 @@ export const sendMessage = createAsyncThunk(
   async (message, thunkAPI) => {
     const senderUserId = thunkAPI.getState().userData.userDetails.userId;
     const receiverUserId = thunkAPI.getState().messages.receiverUserId;
-    console.log("senderUserId ==>>>", senderUserId);
-    console.log("receiverUserId ==>>>", receiverUserId);
     const res = await axios({
       url: `${process.env.REACT_APP_PROXY || ""}/messages/send`,
       withCredentials: true,
@@ -85,11 +100,8 @@ const messagesSlice = createSlice({
       state.searchUsersList = action.payload;
     },
     [getMessages.fulfilled]: (state, action) => {
-      state.messages = action.payload;
-      const receiverUsername = [...action.payload].find(
-        (item) => item.user_id === current(state).receiverUserId
-      ).username;
-      state.receiverUsername = receiverUsername;
+      state.messages = action.payload.messages;
+      state.receiverUsername = action.payload.username.username;
     },
   },
 });

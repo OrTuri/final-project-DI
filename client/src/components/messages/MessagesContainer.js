@@ -6,6 +6,7 @@ import { FaSearch } from "react-icons/fa";
 import { setSearchValue, searchUsers } from "../../features/messagesSlice";
 import { useSelector, useDispatch } from "react-redux";
 import SearchCard from "./SearchCard";
+import RecentConversations from "./RecentConversations";
 
 const MessagesContainer = () => {
   const dispatch = useDispatch();
@@ -44,10 +45,7 @@ const MessagesContainer = () => {
       {searchUsersList.map(({ username, user_id: id }, index) => (
         <SearchCard key={id} label={username} id={id} />
       ))}
-
-      <p className={style["no-messages-paragraph"]}>
-        You currently have no messages...
-      </p>
+      <RecentConversations />
     </div>
   );
 };
