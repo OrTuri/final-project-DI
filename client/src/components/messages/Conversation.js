@@ -16,7 +16,7 @@ const Conversation = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const scrollRef = useRef(null);
-  const { messageValue, receiverUserId, messages, receiverUsername, loading } =
+  const { messageValue, receiverUserId, messages, receiverUsername } =
     useSelector((state) => state.messages);
 
   useEffect(() => {
@@ -37,7 +37,7 @@ const Conversation = () => {
     return () => {
       clearInterval(loadMessagesInterval);
     };
-  }, []);
+  }, [dispatch]);
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(sendMessage(messageValue));

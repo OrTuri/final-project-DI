@@ -65,7 +65,7 @@ export const sendMessage = createAsyncThunk(
   async (message, thunkAPI) => {
     const senderUserId = thunkAPI.getState().userData.userDetails.userId;
     const receiverUserId = thunkAPI.getState().messages.receiverUserId;
-    const res = await axios({
+    await axios({
       url: `${process.env.REACT_APP_PROXY || ""}/messages/send`,
       withCredentials: true,
       data: { senderUserId, receiverUserId, message, date: new Date() },

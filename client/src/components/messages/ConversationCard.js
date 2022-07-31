@@ -29,7 +29,9 @@ const ConversationCard = ({ username, message, user_id, date }) => {
     dispatch(setDeleteReceiverId(user_id));
     dispatch(setModal(true));
     dispatch(setModalTitle("Are you sure? ⚠️"));
-    dispatch(setModalBody("This action will delete your conversation"));
+    dispatch(
+      setModalBody("This action will delete the conversation for both sides!")
+    );
   };
   const onDeleteMessages = () => {
     dispatch(deleteMessages(deleteReceiverId));

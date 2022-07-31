@@ -12,7 +12,7 @@ const Loader = () => {
       }}
     >
       <p>LOADING...</p>
-      <MoonLoader color="#36D7B7" />
+      <MoonLoader color="#36D7B7" size={90} />
     </div>
   );
 };
