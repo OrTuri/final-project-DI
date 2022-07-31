@@ -17,5 +17,16 @@
 
 .message {
   font-size: 20px;
-  margin-top: 10px;
+}
+
+.date {
+  font-size: 15px;
+}
+
+.username-date-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0;
 }

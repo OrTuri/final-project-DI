@@ -3,13 +3,21 @@ import Button from "../UI/Form/Button";
 import Input from "../UI/Form/Input";
 import { Link } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
-import { setSearchValue, searchUsers } from "../../features/messagesSlice";
+import {
+  setSearchValue,
+  searchUsers,
+  setMessages,
+} from "../../features/messagesSlice";
 import { useSelector, useDispatch } from "react-redux";
 import SearchCard from "./SearchCard";
 import RecentConversations from "./RecentConversations";
+import { useEffect } from "react";
 
 const MessagesContainer = () => {
   const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(setMessages([]));
+  }, []);
   const { searchValue, searchUsersList } = useSelector(
     (state) => state.messages
   );

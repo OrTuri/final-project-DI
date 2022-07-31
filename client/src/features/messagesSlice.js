@@ -16,6 +16,7 @@ export const getRecentMessages = createAsyncThunk(
       method: "POST",
     });
     const messages = res.data;
+    return messages;
   }
 );
 
@@ -78,7 +79,9 @@ const initialState = {
   receiverUserId: null,
   messageValue: "",
   messages: [],
+  recentMessages: [],
   receiverUsername: "",
+  loading: false,
 };
 
 const messagesSlice = createSlice({
@@ -94,19 +97,33 @@ const messagesSlice = createSlice({
     setMessageValue: (state, action) => {
       state.messageValue = action.payload;
     },
+    setMessages: (state, action) => {
+      state.messages = action.payload;
+    },
   },
   extraReducers: {
     [searchUsers.fulfilled]: (state, action) => {
       state.searchUsersList = action.payload;
     },
+    [getMessages.pending]: (state, action) => {
+      state.loading = true;
+    },
     [getMessages.fulfilled]: (state, action) => {
       state.messages = action.payload.messages;
       state.receiverUsername = action.payload.username.username;
+      state.loading = false;
+    },
+    [getRecentMessages.fulfilled]: (state, action) => {
+      state.recentMessages = action.payload;
     },
   },
 });
 
-export const { setSearchValue, setReceiverUserId, setMessageValue } =
-  messagesSlice.actions;
+export const {
+  setSearchValue,
+  setReceiverUserId,
+  setMessageValue,
+  setMessages,
+} = messagesSlice.actions;
 
 export default messagesSlice.reducer;

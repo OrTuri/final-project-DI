@@ -1,5 +1,4 @@
-import FadeLoader from "react-spinners/FadeLoader";
-import { useSelector } from "react-redux";
+import MoonLoader from "react-spinners/MoonLoader";
 
 const Loader = () => {
   return (
@@ -13,7 +12,7 @@ const Loader = () => {
       }}
     >
       <p>LOADING...</p>
-      <FadeLoader color="#36D7B7" size={300} />
+      <MoonLoader color="#36D7B7" />
     </div>
   );
 };

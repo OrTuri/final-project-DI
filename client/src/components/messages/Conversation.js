@@ -10,12 +10,14 @@ import {
 } from "../../features/messagesSlice";
 import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { AiFillMessage } from "react-icons/ai";
+import Loader from "../loader/Loader";
 
 const Conversation = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const scrollRef = useRef(null);
-  const { messageValue, receiverUserId, messages, receiverUsername } =
+  const { messageValue, receiverUserId, messages, receiverUsername, loading } =
     useSelector((state) => state.messages);
 
   useEffect(() => {
@@ -44,13 +46,15 @@ const Conversation = () => {
   };
   return (
     <div className={style.container}>
+      <div className={style["heading-container"]}></div>
       <h1 className={style["main-heading"]}>
-        Your conversation with {receiverUsername}
+        <AiFillMessage size="1.5em" color="#2B7A0B" /> {receiverUsername}
       </h1>
       <Link to="/home/messages" className={style.link}>
-        <Button label="Go Back" width="100px" />
+        <Button label="Go Back" width="100px" margin="0" />
       </Link>
       <div className={style["messages-container"]}>
+        {loading && <Loader />}
         {messages.map((message) => {
           return (
             <div

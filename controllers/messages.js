@@ -7,7 +7,6 @@ const {
 } = require("../database/dbModules");
 
 const searchUsers = (req, res) => {
-  console.log(req.body);
   searchRecordsWhereIlike(
     "exercise_tracking_users",
     ["username", "user_id"],
@@ -57,9 +56,17 @@ const recentMessages = (req, res) => {
   const id = Number(req.body);
   db("exercise_tracking_messages")
     .select("*")
+    .innerJoin("exercise_tracking_users", "from_user_id", "=", "user_id")
     .where({ from_user_id: id })
     .orWhere({ to_user_id: id })
     .orderBy("date", "desc")
+    .union([
+      db("exercise_tracking_messages")
+        .select("*")
+        .innerJoin("exercise_tracking_users", "to_user_id", "=", "user_id")
+        .where({ from_user_id: id })
+        .orWhere({ to_user_id: id }),
+    ])
     .then((result) => {
       const ids = [];
       const recentMessages = result.reduce((acc, curr) => {
@@ -75,6 +82,7 @@ const recentMessages = (req, res) => {
 
         return acc;
       }, []);
+
       res.json(recentMessages);
     });
 };
