@@ -11,13 +11,12 @@ import {
 import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { AiFillMessage } from "react-icons/ai";
-import Loader from "../loader/Loader";
 
 const Conversation = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const scrollRef = useRef(null);
-  const { messageValue, receiverUserId, messages, receiverUsername, loading } =
+  const { messageValue, receiverUserId, messages, receiverUsername } =
     useSelector((state) => state.messages);
 
   useEffect(() => {
@@ -27,6 +26,7 @@ const Conversation = () => {
   useEffect(() => {
     if (!receiverUserId) {
       navigate("/home/messages", { replace: true });
+      return;
     }
 
     dispatch(getMessages());
@@ -56,7 +56,6 @@ const Conversation = () => {
         {messages.length < 1 && (
           <p className={style["no-messages"]}>No messages yet...</p>
         )}
-        {/* {loading && <Loader />} */}
         {messages.map((message) => {
           return (
             <div
@@ -72,9 +71,14 @@ const Conversation = () => {
               key={message.messages_id}
             >
               <p>{message.message_content}</p>
-              <p className={style["message-date"]}>
-                {new Date(message.date).toLocaleString("he-il")}
-              </p>
+              <div className={style["date-sender-container"]}>
+                <p className={style["message-date"]}>
+                  {new Date(message.date).toLocaleString("he-il")}
+                </p>
+                <p className={style.sender}>
+                  {message.from_user_id === receiverUserId ? "Them" : "You"}
+                </p>
+              </div>
             </div>
           );
         })}

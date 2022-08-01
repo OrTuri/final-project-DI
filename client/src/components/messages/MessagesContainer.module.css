@@ -33,6 +33,12 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
-  overflow: auto;
+}
+
+.search-results {
   height: 300px;
+  overflow: auto;
+  width: fit-content;
+  padding: 20px;
+  margin-bottom: 20px;
 }

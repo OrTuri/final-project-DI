@@ -61,9 +61,13 @@ const MessagesContainer = () => {
           type="submit"
         />
       </form>
-      {searchUsersList.map(({ username, user_id: id }, index) => (
-        <SearchCard key={id} label={username} id={id} />
-      ))}
+      {searchUsersList.length > 0 && (
+        <div className={style["search-results"]}>
+          {searchUsersList.map(({ username, user_id: id }, index) => (
+            <SearchCard key={id} label={username} id={id} />
+          ))}
+        </div>
+      )}
       {/* {loading && <Loader />} */}
       <RecentConversations />
     </div>
