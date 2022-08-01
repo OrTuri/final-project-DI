@@ -33,4 +33,6 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
+  overflow: auto;
+  height: 300px;
 }

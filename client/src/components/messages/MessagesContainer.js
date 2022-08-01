@@ -48,7 +48,6 @@ const MessagesContainer = () => {
         onSubmit={searchSubmitHandler}
       >
         <Input
-          required
           placeholder="Search users..."
           value={searchValue}
           onChange={(e) => {
