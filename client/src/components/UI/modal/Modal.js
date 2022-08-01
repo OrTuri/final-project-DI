@@ -23,6 +23,9 @@ const Modal = (props) => {
               <Button
                 onClick={() => {
                   dispatch(resetModal());
+                  if (props.onClose) {
+                    props.onClose();
+                  }
                 }}
                 color={props.twoButtons ? "#B20600" : "#F0A500"}
                 label={props.btn1Label}

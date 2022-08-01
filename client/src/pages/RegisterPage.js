@@ -48,7 +48,10 @@ const RegisterPage = (props) => {
   };
   return (
     <Frame>
-      <Modal btn1Label="Close" />
+      <Modal
+        btn1Label="Close"
+        onClose={navigate.bind(null, "/login", { replace: true })}
+      />
       <div className={style.container}>
         <h1 className={style.heading}>Register</h1>
         <form onSubmit={handleSubmit}>
