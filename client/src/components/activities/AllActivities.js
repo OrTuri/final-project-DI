@@ -36,6 +36,11 @@ const AllActivities = (props) => {
   }
   return (
     <div>
+      {filteredUserActivities.length < 1 && (
+        <p style={{ textAlign: "center", marginTop: "20px" }}>
+          You don't have any activities yet...
+        </p>
+      )}
       {filteredUserActivities.map((activity) => {
         return (
           <ActivityCard

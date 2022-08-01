@@ -14,7 +14,6 @@ import { useSelector, useDispatch } from "react-redux";
 import SearchCard from "./SearchCard";
 import RecentConversations from "./RecentConversations";
 import { useEffect } from "react";
-import Loader from "../loader/Loader";
 import { loadUserActivities } from "../../features/userDataSlice";
 
 const MessagesContainer = () => {
@@ -30,7 +29,7 @@ const MessagesContainer = () => {
       dispatch(resetSearchUsersList());
     };
   }, []);
-  const { searchValue, searchUsersList, loading } = useSelector(
+  const { searchValue, searchUsersList } = useSelector(
     (state) => state.messages
   );
   const searchSubmitHandler = (e) => {
@@ -47,25 +46,32 @@ const MessagesContainer = () => {
         className={style["search-users-form"]}
         onSubmit={searchSubmitHandler}
       >
-        <Input
-          required
-          placeholder="Search users..."
-          value={searchValue}
-          onChange={(e) => {
-            dispatch(setSearchValue(e.target.value));
-          }}
-        />
-        <Button
-          label={<FaSearch />}
-          width="50px"
-          color="#3AB0FF"
-          type="submit"
-        />
+        <label>Search users</label>
+        <div className={style.inputs}>
+          <Input
+            margin="0"
+            placeholder="Leave empty to see all users"
+            value={searchValue}
+            onChange={(e) => {
+              dispatch(setSearchValue(e.target.value));
+            }}
+          />
+          <Button
+            margin="0"
+            label={<FaSearch />}
+            width="50px"
+            color="#3AB0FF"
+            type="submit"
+          />
+        </div>
       </form>
-      {searchUsersList.map(({ username, user_id: id }, index) => (
-        <SearchCard key={id} label={username} id={id} />
-      ))}
-      {/* {loading && <Loader />} */}
+      {searchUsersList.length > 0 && (
+        <div className={style["search-results"]}>
+          {searchUsersList.map(({ username, user_id: id }, index) => (
+            <SearchCard key={id} label={username} id={id} />
+          ))}
+        </div>
+      )}
       <RecentConversations />
     </div>
   );

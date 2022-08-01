@@ -29,6 +29,18 @@
 }
 
 .search-users-form {
+}
+
+.search-results {
+  height: 200px;
+  overflow: auto;
+  width: fit-content;
+  padding: 20px;
+  margin-bottom: 20px;
+  flex-shrink: 0;
+}
+
+.inputs {
   display: flex;
   align-items: center;
   justify-content: center;

@@ -5,6 +5,7 @@
   width: 300px;
   transition: all 0.3s;
   cursor: pointer;
+  overflow-wrap: break-word;
 }
 
 .container:hover {

@@ -58,16 +58,24 @@
   width: 60%;
   border-radius: 20px;
   padding: 10px;
-  margin-top: auto;
+  overflow-wrap: break-word;
 }
 
 .current-user-message {
-  margin-top: auto;
   background-color: rgba(97, 133, 182, 0.275);
   width: 60%;
   border-radius: 20px;
   padding: 10px;
   margin-left: auto;
+  overflow-wrap: break-word;
+}
+
+.current-user-message:first-child {
+  margin-top: auto;
+}
+
+.other-user-message:first-child {
+  margin-top: auto;
 }
 
 .message-date {
@@ -77,4 +85,21 @@
 .no-messages {
   text-align: center;
   margin-top: auto;
+}
+
+.date-sender-container {
+  display: flex;
+}
+
+.sender {
+  margin-left: auto;
+  font-size: 15px;
+  margin-top: 15px;
+}
+
+@media (max-width: 800px) {
+  .current-user-message,
+  .other-user-message {
+    width: 80%;
+  }
 }

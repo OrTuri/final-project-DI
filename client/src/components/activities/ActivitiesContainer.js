@@ -52,7 +52,8 @@ const ActivitiesContainer = (props) => {
       )}
       {clickedLocation && <ActivityForm />}
       <RecentActivities />
-      <Link to="" className={style.link}>
+      {loading && <Loader />}
+      <Link to="" className={`${style.link} ${style.logout}`}>
         <Button
           label="LOGOUT"
           color="#EB1D36"
@@ -60,7 +61,6 @@ const ActivitiesContainer = (props) => {
           onClick={onLogout}
         />
       </Link>
-      {loading && <Loader />}
     </div>
   );
 };
