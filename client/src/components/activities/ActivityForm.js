@@ -22,7 +22,7 @@ const ActivityForm = (props) => {
     dispatch(setClickedLocation(null));
   };
   return (
-    <div>
+    <div className={style.container}>
       <h3 className={style.heading}>Add new activity</h3>
       <form className={style.form} onSubmit={submitHandler}>
         <div className={style["input-container"]}>
