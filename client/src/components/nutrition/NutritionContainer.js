@@ -3,6 +3,7 @@ import Container from "../UI/container/Container";
 import Button from "../UI/Form/Button";
 import { Link } from "react-router-dom";
 import NutritionSearchForm from "./NutritionSearchForm";
+import FoodResults from "./FoodResults";
 
 const NutritionContainer = () => {
   return (
@@ -12,6 +13,7 @@ const NutritionContainer = () => {
         <Button label="Go Back" width="100px" />
       </Link>
       <NutritionSearchForm />
+      <FoodResults />
     </Container>
   );
 };
