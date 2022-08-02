@@ -4,7 +4,6 @@ import axios from "axios";
 export const getFoodData = createAsyncThunk(
   "nutrition/getFoodData",
   async ({ food, grams }, thunkAPI) => {
-    console.log(process.env.REACT_APP_NUTRITIONX_API_ID);
     const res = await axios({
       url: "https://trackapi.nutritionix.com/v2/natural/nutrients",
       data: {
@@ -18,7 +17,7 @@ export const getFoodData = createAsyncThunk(
       },
       method: "POST",
     });
-    console.log(res);
+    return res.data;
   }
 );
 
@@ -27,6 +26,7 @@ const initialState = {
     food: "",
     grams: "",
   },
+  searchResults: [],
 };
 
 const nutritionSlice = createSlice({
@@ -38,6 +38,31 @@ const nutritionSlice = createSlice({
     },
     resetSearchValues: (state, action) => {
       state.searchValues = initialState.searchValues;
+    },
+  },
+  extraReducers: {
+    [getFoodData.fulfilled]: (state, action) => {
+      const {
+        ndb_no: id,
+        nf_calories: calories,
+        nf_protein: protein,
+        nf_total_fat: fat,
+        photo: { highres: imgSrc },
+        food_name: name,
+        nf_total_carbohydrate: carbohydrates,
+        serving_weight_grams: grams,
+      } = action.payload.foods[0];
+      const food = {
+        name,
+        calories,
+        fat,
+        protein,
+        imgSrc,
+        carbohydrates,
+        id,
+        grams,
+      };
+      state.searchResults.push(food);
     },
   },
 });

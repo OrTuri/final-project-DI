@@ -4,8 +4,10 @@ import Button from "../UI/Form/Button";
 import { Link } from "react-router-dom";
 import NutritionSearchForm from "./NutritionSearchForm";
 import FoodResults from "./FoodResults";
+import { useSelector } from "react-redux";
 
 const NutritionContainer = () => {
+  const { searchResults } = useSelector((state) => state.nutrition);
   return (
     <Container>
       <h1 className={style["main-heading"]}>Nutrition</h1>
@@ -13,7 +15,7 @@ const NutritionContainer = () => {
         <Button label="Go Back" width="100px" />
       </Link>
       <NutritionSearchForm />
-      <FoodResults />
+      <FoodResults foods={searchResults} />
     </Container>
   );
 };
