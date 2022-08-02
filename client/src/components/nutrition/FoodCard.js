@@ -1,14 +1,16 @@
 import style from "./FoodCard.module.css";
 import Button from "../UI/Form/Button";
 import { AiFillSave } from "react-icons/ai";
+import { BsFillTrashFill } from "react-icons/bs";
 import { saveFood } from "../../features/nutritionSlice";
 import { useDispatch } from "react-redux";
 
 const FoodCard = (props) => {
   const dispatch = useDispatch();
-  const clickHandler = () => {
+  const saveHandler = () => {
     dispatch(saveFood(props.foodData));
   };
+  const deleteHandler = () => {};
   return (
     <div className={style.container}>
       <h4 className={style.heading}>{`${props.name
@@ -30,11 +32,17 @@ const FoodCard = (props) => {
         </p>
       </div>
       <Button
-        label={<AiFillSave size="1.7em" />}
+        label={
+          props.del ? (
+            <BsFillTrashFill size="1.5em" color="#B25068" />
+          ) : (
+            <AiFillSave size="1.7em" />
+          )
+        }
         width="50px"
         color="#94B49F"
         margin="0"
-        onClick={clickHandler}
+        onClick={props.del ? deleteHandler : saveHandler}
       />
     </div>
   );

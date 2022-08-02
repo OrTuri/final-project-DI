@@ -17,7 +17,7 @@ const NutritionContainer = () => {
         <Link to="/home" className={style.link}>
           <Button label="Go Back" width="100px" />
         </Link>
-        <Link to="/home/nutrition/favourits" className={style.link}>
+        <Link to="/home/nutrition/favourites" className={style.link}>
           <Button label="Favourites" width="100px" color="#0096FF" margin="0" />
         </Link>
         <NutritionSearchForm />

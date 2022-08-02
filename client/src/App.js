@@ -10,6 +10,7 @@ import AllActivitiesContainer from "./components/activities/AllActivitiesContain
 import MessagesContainer from "./components/messages/MessagesContainer";
 import Conversation from "./components/messages/Conversation";
 import NutritionContainer from "./components/nutrition/NutritionContainer";
+import Favourites from "./components/nutrition/Favourites";
 
 const App = () => {
   const { navigateLogin } = useSelector((state) => state.authentication);
@@ -71,6 +72,14 @@ const App = () => {
             element={
               <Authenticate>
                 <NutritionContainer />
+              </Authenticate>
+            }
+          />
+          <Route
+            path="nutrition/favourites"
+            element={
+              <Authenticate>
+                <Favourites />
               </Authenticate>
             }
           />

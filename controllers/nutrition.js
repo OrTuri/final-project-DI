@@ -1,4 +1,4 @@
-const { pushDataToDB } = require("../database/dbModules");
+const { pushDataToDB, getPropertyFromDB } = require("../database/dbModules");
 
 const saveFood = (req, res) => {
   const {
@@ -30,4 +30,16 @@ const saveFood = (req, res) => {
     });
 };
 
-module.exports = { saveFood };
+const getFavourites = (req, res) => {
+  const user_id = req.body;
+  getPropertyFromDB("exercise_tracking_nutrition", "*", { user_id })
+    .then((data) => {
+      res.json(data);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.sendStatus(403);
+    });
+};
+
+module.exports = { saveFood, getFavourites };

@@ -4,7 +4,24 @@ import { setModal, setModalTitle, setModalBody } from "./modalSlice";
 
 export const getFavourites = createAsyncThunk(
   "nutrition/getFavourites",
-  async (_, thunkAPI) => {}
+  async (_, thunkAPI) => {
+    const userId = thunkAPI.getState().userData.userDetails.userId;
+    try {
+      const res = await axios({
+        url: `${process.env.REACT_APP_PROXY || ""}/nutrition/favourites`,
+        data: userId,
+        method: "POST",
+        withCredentials: true,
+        headers: {
+          Authorization: thunkAPI.getState().authentication.token,
+          "Content-Type": "text/plain",
+        },
+      });
+      return res.data;
+    } catch (err) {
+      console.log(err);
+    }
+  }
 );
 
 export const saveFood = createAsyncThunk(
@@ -61,6 +78,8 @@ const initialState = {
     grams: "",
   },
   searchResults: [],
+  favourites: [],
+  loading: false,
 };
 
 const nutritionSlice = createSlice({
@@ -76,7 +95,6 @@ const nutritionSlice = createSlice({
   },
   extraReducers: {
     [getFoodData.fulfilled]: (state, action) => {
-      console.log(action.payload);
       const {
         ndb_no: id,
         nf_calories: calories,
@@ -98,6 +116,13 @@ const nutritionSlice = createSlice({
         grams,
       };
       state.searchResults.push(food);
+    },
+    [getFavourites.pending]: (state, action) => {
+      state.loading = true;
+    },
+    [getFavourites.fulfilled]: (state, action) => {
+      state.favourites = action.payload;
+      state.loading = false;
     },
   },
 });
