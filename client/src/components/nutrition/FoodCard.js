@@ -1,7 +1,13 @@
 import style from "./FoodCard.module.css";
 
 const FoodCard = (props) => {
-  return <h1>FOOD</h1>;
+  return (
+    <div className={style.container}>
+      <div>
+        <h4>Banana</h4>
+      </div>
+    </div>
+  );
 };
 
 export default FoodCard;

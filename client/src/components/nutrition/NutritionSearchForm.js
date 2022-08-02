@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   setSearchValues,
   resetSearchValues,
+  getFoodData,
 } from "../../features/nutritionSlice";
 
 const NutritionSearchForm = () => {
@@ -13,7 +14,7 @@ const NutritionSearchForm = () => {
   const { searchValues } = useSelector((state) => state.nutrition);
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log(searchValues);
+    dispatch(getFoodData(searchValues));
     dispatch(resetSearchValues());
   };
   return (
