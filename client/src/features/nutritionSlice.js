@@ -1,5 +1,39 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { setModal, setModalTitle, setModalBody } from "./modalSlice";
+
+export const getFavourites = createAsyncThunk(
+  "nutrition/getFavourites",
+  async (_, thunkAPI) => {}
+);
+
+export const saveFood = createAsyncThunk(
+  "nutrition/saveFood",
+  async (foodData, thunkAPI) => {
+    try {
+      const userId = thunkAPI.getState().userData.userDetails.userId;
+      await axios({
+        url: `${process.env.REACT_APP_PROXY || ""}/nutrition/save`,
+        method: "POST",
+        withCredentials: true,
+        headers: { Authorization: thunkAPI.getState().authentication.token },
+        data: { ...foodData, userId },
+      });
+      thunkAPI.dispatch(setModal(true));
+      thunkAPI.dispatch(setModalTitle("Saved successfully! 🟢"));
+      thunkAPI.dispatch(
+        setModalBody(
+          "Your food was saved successfully\nClick on the Favourites tab to see it!"
+        )
+      );
+    } catch (err) {
+      console.log(err);
+      thunkAPI.dispatch(setModal(true));
+      thunkAPI.dispatch(setModalTitle("There was an Error! ⛔"));
+      thunkAPI.dispatch(setModalBody("Please try again later!"));
+    }
+  }
+);
 
 export const getFoodData = createAsyncThunk(
   "nutrition/getFoodData",
@@ -42,13 +76,14 @@ const nutritionSlice = createSlice({
   },
   extraReducers: {
     [getFoodData.fulfilled]: (state, action) => {
+      console.log(action.payload);
       const {
         ndb_no: id,
         nf_calories: calories,
         nf_protein: protein,
         nf_total_fat: fat,
         photo: { highres: imgSrc },
-        food_name: name,
+        tags: { item: name },
         nf_total_carbohydrate: carbohydrates,
         serving_weight_grams: grams,
       } = action.payload.foods[0];

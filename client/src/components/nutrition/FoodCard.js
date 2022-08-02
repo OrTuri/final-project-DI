@@ -1,9 +1,14 @@
 import style from "./FoodCard.module.css";
 import Button from "../UI/Form/Button";
 import { AiFillSave } from "react-icons/ai";
+import { saveFood } from "../../features/nutritionSlice";
+import { useDispatch } from "react-redux";
 
 const FoodCard = (props) => {
-  const clickHandler = () => {};
+  const dispatch = useDispatch();
+  const clickHandler = () => {
+    dispatch(saveFood(props.foodData));
+  };
   return (
     <div className={style.container}>
       <h4 className={style.heading}>{`${props.name

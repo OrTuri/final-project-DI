@@ -5,7 +5,7 @@ const FoodResults = (props) => {
   return (
     <div className={style.container}>
       {[...props.foods].reverse().map((food) => {
-        return <FoodCard {...food} key={food.id} />;
+        return <FoodCard {...food} foodData={food} key={food.id} />;
       })}
     </div>
   );
