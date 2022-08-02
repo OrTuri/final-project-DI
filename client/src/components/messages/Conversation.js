@@ -1,4 +1,5 @@
 import style from "./Conversation.module.css";
+import Container from "../UI/container/Container";
 import { Link } from "react-router-dom";
 import Button from "../UI/Form/Button";
 import Input from "../UI/Form/Input";
@@ -45,7 +46,7 @@ const Conversation = () => {
     dispatch(setMessageValue(""));
   };
   return (
-    <div className={style.container}>
+    <Container>
       <h1 className={style["main-heading"]}>
         <AiFillMessage size="1.5em" color="#2B7A0B" /> {receiverUsername}
       </h1>
@@ -94,7 +95,7 @@ const Conversation = () => {
         />
         <Button color="#BF9742" type="submit" label="SEND" width="80px" />
       </form>
-    </div>
+    </Container>
   );
 };
 

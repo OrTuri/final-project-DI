@@ -1,5 +1,6 @@
-import { useSelector, useDispatch } from "react-redux";
 import style from "./ActivitiesContainer.module.css";
+import { useSelector, useDispatch } from "react-redux";
+import Container from "../UI/container/Container";
 import ActivityForm from "./ActivityForm";
 import { loadUserActivities } from "../../features/userDataSlice";
 import { useEffect } from "react";
@@ -31,7 +32,7 @@ const ActivitiesContainer = (props) => {
     dispatch(loadUserActivities());
   }, [dispatch]);
   return (
-    <div className={style["activities-container"]}>
+    <Container>
       <h1 className={style["main-heading"]}>
         Welcome {userDetails.fullName.split(" ")[0]}!
       </h1>
@@ -43,6 +44,9 @@ const ActivitiesContainer = (props) => {
         </div>
         <Link to="/home/messages" className={style.link}>
           <Button label="Messages" color="#EF5B0C" width="120px" />
+        </Link>
+        <Link to="/home/nutrition" className={style.link}>
+          <Button label="Nutrition" color="#1C3879" width="120px" margin="0" />
         </Link>
       </div>
       {!clickedLocation && (
@@ -61,7 +65,7 @@ const ActivitiesContainer = (props) => {
           onClick={onLogout}
         />
       </Link>
-    </div>
+    </Container>
   );
 };
 

@@ -1,4 +1,5 @@
 import style from "./AllActivitiesContainer.module.css";
+import Container from "../UI/container/Container";
 import Button from "../UI/Form/Button";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -21,7 +22,7 @@ const AllActivitiesContainer = (props) => {
   };
   const { selectValue } = useSelector((state) => state.filterActivity);
   return (
-    <div className={style["activities-container"]}>
+    <Container>
       <h1 className={style["main-heading"]}>All Activities</h1>
       <Link to="/home" className={style.link}>
         <Button label="Go Back" width="100px" />
@@ -41,7 +42,7 @@ const AllActivitiesContainer = (props) => {
         </select>
       </div>
       <AllActivities />
-    </div>
+    </Container>
   );
 };
 

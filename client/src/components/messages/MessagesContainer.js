@@ -1,4 +1,5 @@
 import style from "./MessagesContainer.module.css";
+import Container from "../UI/container/Container";
 import Button from "../UI/Form/Button";
 import Input from "../UI/Form/Input";
 import { Link } from "react-router-dom";
@@ -37,7 +38,7 @@ const MessagesContainer = () => {
     dispatch(searchUsers());
   };
   return (
-    <div className={style["messages-container"]}>
+    <Container>
       <h1 className={style["main-heading"]}>Messages</h1>
       <Link to="/home" className={style.link}>
         <Button label="Go Back" width="100px" />
@@ -73,7 +74,7 @@ const MessagesContainer = () => {
         </div>
       )}
       <RecentConversations />
-    </div>
+    </Container>
   );
 };
 

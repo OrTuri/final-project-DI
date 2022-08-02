@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import AllActivitiesContainer from "./components/activities/AllActivitiesContainer";
 import MessagesContainer from "./components/messages/MessagesContainer";
 import Conversation from "./components/messages/Conversation";
+import NutritionContainer from "./components/nutrition/NutritionContainer";
 
 const App = () => {
   const { navigateLogin } = useSelector((state) => state.authentication);
@@ -18,7 +19,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Navigate to="/home" replace={true} />} />
         <Route
-          path="/home"
+          path="home"
           element={
             <Authenticate>
               <HomePage />
@@ -62,6 +63,14 @@ const App = () => {
             element={
               <Authenticate>
                 <Conversation />
+              </Authenticate>
+            }
+          />
+          <Route
+            path="nutrition"
+            element={
+              <Authenticate>
+                <NutritionContainer />
               </Authenticate>
             }
           />
