@@ -2,6 +2,13 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { setModal, setModalTitle, setModalBody } from "./modalSlice";
 
+export const deleteFood = createAsyncThunk(
+  "nutrition/deleteFood",
+  async (foodId, thunkAPI) => {
+    console.log(foodId);
+  }
+);
+
 export const getFavourites = createAsyncThunk(
   "nutrition/getFavourites",
   async (_, thunkAPI) => {

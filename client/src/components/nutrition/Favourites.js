@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import FoodCard from "./FoodCard";
 import Loader from "../loader/Loader";
 import Modal from "../UI/modal/Modal";
+import { deleteFood } from "../../features/nutritionSlice";
 
 const Favourites = () => {
   const { favourites, loading } = useSelector((state) => state.nutrition);
@@ -17,7 +18,6 @@ const Favourites = () => {
   }, []);
   return (
     <>
-      <Modal twoBtns btn1Label="YES" btn2Label="NO" />
       <Container>
         <h1 className={style["main-heading"]}>Favourite Foods</h1>
         <Link to="/home/nutrition" className={style.link}>
