@@ -28,7 +28,9 @@ const FoodCard = (props) => {
   };
   return (
     <>
-      <Modal twoButtons btn1Label="NO" btn2Label="YES" onClick={onDelete} />
+      {props.del && (
+        <Modal twoButtons btn1Label="NO" btn2Label="YES" onClick={onDelete} />
+      )}
       <div className={style.container}>
         <h4 className={style.heading}>{`${props.name
           .at(0)
