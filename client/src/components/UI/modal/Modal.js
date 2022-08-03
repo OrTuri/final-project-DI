@@ -28,14 +28,13 @@ const Modal = (props) => {
                   }
                 }}
                 color={props.twoButtons ? "#B20600" : "#F0A500"}
-                label={props.btn1Label}
-              />
+              >
+                {props.btn1Label}
+              </Button>
               {props.twoButtons && (
-                <Button
-                  onClick={props.onClick}
-                  color="#125B50"
-                  label={props.btn2Label}
-                />
+                <Button onClick={props.onClick} color="#125B50">
+                  {props.btn2Label}
+                </Button>
               )}
             </div>
           </div>

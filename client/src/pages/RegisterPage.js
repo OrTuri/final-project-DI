@@ -127,7 +127,9 @@ const RegisterPage = (props) => {
             autoComplete="current-password"
             required
           />
-          <Button label="REGISTER" type="submit" />
+          <Button type="submit" width="120px">
+            REGISTER
+          </Button>
         </form>
         <p className={style.paragraph}>
           Already a user?{" "}

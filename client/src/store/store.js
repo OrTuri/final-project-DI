@@ -9,6 +9,7 @@ import filterActivityReducer from "../features/filterActivitySlice";
 import deleteActivityReducer from "../features/deleteActivitySlice";
 import editActivityReducer from "../features/editActivitySlice";
 import messagesReducer from "../features/messagesSlice";
+import nutritionReducer from "../features/nutritionSlice";
 
 const store = configureStore({
   reducer: {
@@ -22,6 +23,7 @@ const store = configureStore({
     deleteActivity: deleteActivityReducer,
     editActivity: editActivityReducer,
     messages: messagesReducer,
+    nutrition: nutritionReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

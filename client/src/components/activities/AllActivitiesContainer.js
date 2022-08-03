@@ -1,4 +1,5 @@
 import style from "./AllActivitiesContainer.module.css";
+import Container from "../UI/container/Container";
 import Button from "../UI/Form/Button";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -7,6 +8,7 @@ import { useEffect } from "react";
 import { loadUserActivities } from "../../features/userDataSlice";
 import { setSelectValue } from "../../features/filterActivitySlice";
 import { setMode } from "../../features/mapSlice";
+import { BiArrowBack } from "react-icons/bi";
 
 const AllActivitiesContainer = (props) => {
   const dispatch = useDispatch();
@@ -21,10 +23,13 @@ const AllActivitiesContainer = (props) => {
   };
   const { selectValue } = useSelector((state) => state.filterActivity);
   return (
-    <div className={style["activities-container"]}>
+    <Container>
       <h1 className={style["main-heading"]}>All Activities</h1>
       <Link to="/home" className={style.link}>
-        <Button label="Go Back" width="100px" />
+        <Button width="140px">
+          Go Back{" "}
+          <BiArrowBack size="1.5em" color="#fff" className={style.icon} />
+        </Button>
       </Link>
       <div className={style.filter}>
         <label htmlFor="filter">Sort By</label>
@@ -41,7 +46,7 @@ const AllActivitiesContainer = (props) => {
         </select>
       </div>
       <AllActivities />
-    </div>
+    </Container>
   );
 };
 

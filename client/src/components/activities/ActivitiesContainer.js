@@ -1,5 +1,6 @@
-import { useSelector, useDispatch } from "react-redux";
 import style from "./ActivitiesContainer.module.css";
+import { useSelector, useDispatch } from "react-redux";
+import Container from "../UI/container/Container";
 import ActivityForm from "./ActivityForm";
 import { loadUserActivities } from "../../features/userDataSlice";
 import { useEffect } from "react";
@@ -10,6 +11,10 @@ import { setMode } from "../../features/mapSlice";
 import axios from "axios";
 import { setNavigateLogin, setToken } from "../../features/authenticationSlice";
 import Loader from "../loader/Loader";
+import { AiFillMessage } from "react-icons/ai";
+import { BiRun } from "react-icons/bi";
+import { MdFastfood } from "react-icons/md";
+import { RiLogoutBoxLine } from "react-icons/ri";
 
 const ActivitiesContainer = (props) => {
   const { userDetails, loading } = useSelector((state) => state.userData);
@@ -31,18 +36,34 @@ const ActivitiesContainer = (props) => {
     dispatch(loadUserActivities());
   }, [dispatch]);
   return (
-    <div className={style["activities-container"]}>
+    <Container>
       <h1 className={style["main-heading"]}>
         Welcome {userDetails.fullName.split(" ")[0]}!
       </h1>
       <div className={style["heading-container"]}>
         <div className={style.btn}>
           <Link to="/home/all" className={style.link}>
-            <Button label="All Activities" color="#EC994B" width="120px" />
+            <Button color="#EC994B" width="160px" margin="0">
+              <span className={style.nav}>All Activities</span>
+              <BiRun size="1.5em" color="#0096ff" className={style.icon} />
+            </Button>
           </Link>
         </div>
         <Link to="/home/messages" className={style.link}>
-          <Button label="Messages" color="#EF5B0C" width="120px" />
+          <Button color="#EF5B0C" width="160px" margin="0">
+            <span className={style.nav}>Messages</span>
+            <AiFillMessage
+              size="1.5em"
+              color="#59CE8F"
+              className={style.icon}
+            />
+          </Button>
+        </Link>
+        <Link to="/home/nutrition" className={style.link}>
+          <Button color="#1C3879" width="160px" margin="0">
+            <span className={style.nav}>Nutrition</span>
+            <MdFastfood size="1.5em" color="#D6EFED" className={style.icon} />
+          </Button>
         </Link>
       </div>
       {!clickedLocation && (
@@ -54,14 +75,16 @@ const ActivitiesContainer = (props) => {
       <RecentActivities />
       {loading && <Loader />}
       <Link to="" className={`${style.link} ${style.logout}`}>
-        <Button
-          label="LOGOUT"
-          color="#EB1D36"
-          width="120px"
-          onClick={onLogout}
-        />
+        <Button color="#EB1D36" width="140px" onClick={onLogout}>
+          <span className={style.nav}>LOGOUT</span>
+          <RiLogoutBoxLine
+            size="1.5em"
+            color="#D6EFED"
+            className={style.icon}
+          />
+        </Button>
       </Link>
-    </div>
+    </Container>
   );
 };
 

@@ -1,22 +1,6 @@
-.container {
-  width: 90%;
-  height: 90vh;
-  padding: 10px;
-  border-radius: 10px;
-  box-shadow: 0 0 20px 2px rgb(0 0 0 / 28%);
-  margin-top: 20px;
-  margin: 20px auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 15px;
-  overflow: auto;
-}
-
 .main-heading {
   font-family: "Roboto", sans-serif;
-  font-size: 25px;
+  font-size: 30px;
   /* margin-top: 20px; */
   text-align: center;
   grid-column: 2;
@@ -27,6 +11,16 @@
   align-items: center;
   gap: 10px;
 }
+
+/* .main-heading {
+  font-family: "Roboto", sans-serif;
+  font-size: 40px;
+  margin-top: 20px;
+  text-align: center;
+  grid-column: 2;
+  width: 300px;
+  text-shadow: 14px 7px 12px rgb(0 0 0 / 34%);
+} */
 
 .link {
   text-decoration: none;
@@ -102,4 +96,8 @@
   .other-user-message {
     width: 80%;
   }
+}
+
+.icon {
+  margin-left: 10px;
 }

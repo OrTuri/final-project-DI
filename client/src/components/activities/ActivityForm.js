@@ -8,6 +8,7 @@ import {
 } from "../../features/userDataSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { setClickedLocation } from "../../features/mapSlice";
+import { BiMessageSquareAdd } from "react-icons/bi";
 
 const ActivityForm = (props) => {
   const dispatch = useDispatch();
@@ -72,12 +73,13 @@ const ActivityForm = (props) => {
         </div>
         <div className={style.btn}>
           <Button
-            label="ADD"
-            width="80px"
+            width="100px"
             margin="20px auto"
             type="submit"
             color="#2B7A0B"
-          />
+          >
+            ADD <BiMessageSquareAdd size="1.3em" className={style.icon} />
+          </Button>
         </div>
       </form>
     </div>

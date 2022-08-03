@@ -6,6 +6,7 @@ const loginRouter = require("./routes/login");
 const registerRouter = require("./routes/register");
 const authRouter = require("./routes/auth");
 const logoutRouter = require("./routes/logout");
+const nutritionRouter = require("./routes/nutrition");
 const activitiesRouter = require("./routes/activities");
 const messagesRouter = require("./routes/messages");
 const cors = require("cors");
@@ -34,6 +35,7 @@ app.use("/auth", authRouter);
 app.use("/activities", activitiesRouter);
 app.use("/logout", logoutRouter);
 app.use("/messages", messagesRouter);
+app.use("/nutrition", nutritionRouter);
 
 app.use("/", express.static(path.resolve(__dirname, "./client/build")));
 
