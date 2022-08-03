@@ -25,7 +25,7 @@ const AllActivitiesContainer = (props) => {
     <Container>
       <h1 className={style["main-heading"]}>All Activities</h1>
       <Link to="/home" className={style.link}>
-        <Button label="Go Back" width="100px" />
+        <Button width="100px">Go Back</Button>
       </Link>
       <div className={style.filter}>
         <label htmlFor="filter">Sort By</label>

@@ -21,7 +21,7 @@ const Favourites = () => {
       <Container>
         <h1 className={style["main-heading"]}>Favourite Foods</h1>
         <Link to="/home/nutrition" className={style.link}>
-          <Button label="Go Back" width="100px" />
+          <Button width="100px">Go Back</Button>
         </Link>
         {loading && <Loader />}
         <div className={style.container}>

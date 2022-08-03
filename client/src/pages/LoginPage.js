@@ -86,7 +86,7 @@ const LoginPage = (props) => {
             autoComplete="current-password"
             required
           />
-          <Button label="SIGN IN" type="submit" />
+          <Button type="submit">SIGN IN</Button>
         </form>
         <p className={style.paragraph}>
           Not a user?{" "}

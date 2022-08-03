@@ -15,10 +15,12 @@ const NutritionContainer = () => {
       <Container>
         <h1 className={style["main-heading"]}>Nutrition</h1>
         <Link to="/home" className={style.link}>
-          <Button label="Go Back" width="100px" />
+          <Button width="100px">Go Back</Button>
         </Link>
         <Link to="/home/nutrition/favourites" className={style.link}>
-          <Button label="Favourites" width="100px" color="#0096FF" margin="0" />
+          <Button width="100px" color="#0096FF" margin="0">
+            Favourites
+          </Button>
         </Link>
         <NutritionSearchForm />
         <FoodResults foods={searchResults} />

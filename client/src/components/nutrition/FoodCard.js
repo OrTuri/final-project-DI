@@ -51,18 +51,17 @@ const FoodCard = (props) => {
           </p>
         </div>
         <Button
-          label={
-            props.del ? (
-              <BsFillTrashFill size="1.5em" color="#B25068" />
-            ) : (
-              <AiFillSave size="1.7em" />
-            )
-          }
           width="50px"
           color="#94B49F"
           margin="0"
           onClick={props.del ? deleteHandler : saveHandler}
-        />
+        >
+          {props.del ? (
+            <BsFillTrashFill size="1.5em" color="#B25068" />
+          ) : (
+            <AiFillSave size="1.7em" />
+          )}
+        </Button>
       </div>
     </>
   );

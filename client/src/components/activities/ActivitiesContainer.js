@@ -39,14 +39,20 @@ const ActivitiesContainer = (props) => {
       <div className={style["heading-container"]}>
         <div className={style.btn}>
           <Link to="/home/all" className={style.link}>
-            <Button label="All Activities" color="#EC994B" width="120px" />
+            <Button color="#EC994B" width="120px">
+              All Activities
+            </Button>
           </Link>
         </div>
         <Link to="/home/messages" className={style.link}>
-          <Button label="Messages" color="#EF5B0C" width="120px" />
+          <Button color="#EF5B0C" width="120px">
+            Messages
+          </Button>
         </Link>
         <Link to="/home/nutrition" className={style.link}>
-          <Button label="Nutrition" color="#1C3879" width="120px" margin="0" />
+          <Button color="#1C3879" width="120px" margin="0">
+            Nutrition
+          </Button>
         </Link>
       </div>
       {!clickedLocation && (
@@ -58,12 +64,9 @@ const ActivitiesContainer = (props) => {
       <RecentActivities />
       {loading && <Loader />}
       <Link to="" className={`${style.link} ${style.logout}`}>
-        <Button
-          label="LOGOUT"
-          color="#EB1D36"
-          width="120px"
-          onClick={onLogout}
-        />
+        <Button color="#EB1D36" width="120px" onClick={onLogout}>
+          LOGOUT
+        </Button>
       </Link>
     </Container>
   );
