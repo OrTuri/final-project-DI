@@ -48,13 +48,9 @@ const NutritionSearchForm = () => {
           }}
         />
       </div>
-      <Button
-        margin="0"
-        width="50px"
-        color="#DF7861"
-        label={<FaSearch />}
-        type="submit"
-      />
+      <Button margin="0" width="50px" color="#DF7861" type="submit">
+        <FaSearch />
+      </Button>
     </form>
   );
 };

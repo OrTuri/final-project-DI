@@ -12,6 +12,8 @@ import {
 import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { AiFillMessage } from "react-icons/ai";
+import { IoMdSend } from "react-icons/io";
+import { BiArrowBack } from "react-icons/bi";
 
 const Conversation = () => {
   const dispatch = useDispatch();
@@ -51,7 +53,10 @@ const Conversation = () => {
         <AiFillMessage size="1.5em" color="#2B7A0B" /> {receiverUsername}
       </h1>
       <Link to="/home/messages" className={style.link}>
-        <Button label="Go Back" width="100px" margin="0" />
+        <Button width="140px">
+          Go Back{" "}
+          <BiArrowBack size="1.5em" color="#fff" className={style.icon} />
+        </Button>
       </Link>
       <div className={style["messages-container"]}>
         {messages.length < 1 && (
@@ -88,12 +93,14 @@ const Conversation = () => {
       <form className={style["send-message-form"]} onSubmit={submitHandler}>
         <Input
           required
-          placeholder="Search users..."
+          placeholder="Write a message..."
           width="90%"
           value={messageValue}
           onChange={(e) => dispatch(setMessageValue(e.target.value))}
         />
-        <Button color="#BF9742" type="submit" label="SEND" width="80px" />
+        <Button color="#BF9742" type="submit" width="80px">
+          <IoMdSend size="2em" />
+        </Button>
       </form>
     </Container>
   );

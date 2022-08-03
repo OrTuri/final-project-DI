@@ -7,8 +7,7 @@ import { getFavourites } from "../../features/nutritionSlice";
 import { useDispatch, useSelector } from "react-redux";
 import FoodCard from "./FoodCard";
 import Loader from "../loader/Loader";
-import Modal from "../UI/modal/Modal";
-import { deleteFood } from "../../features/nutritionSlice";
+import { BiArrowBack } from "react-icons/bi";
 
 const Favourites = () => {
   const { favourites, loading } = useSelector((state) => state.nutrition);
@@ -21,7 +20,10 @@ const Favourites = () => {
       <Container>
         <h1 className={style["main-heading"]}>Favourite Foods</h1>
         <Link to="/home/nutrition" className={style.link}>
-          <Button width="100px">Go Back</Button>
+          <Button width="140px">
+            Go Back{" "}
+            <BiArrowBack size="1.5em" color="#fff" className={style.icon} />
+          </Button>
         </Link>
         {loading && <Loader />}
         <div className={style.container}>

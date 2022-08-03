@@ -11,6 +11,10 @@ import { setMode } from "../../features/mapSlice";
 import axios from "axios";
 import { setNavigateLogin, setToken } from "../../features/authenticationSlice";
 import Loader from "../loader/Loader";
+import { AiFillMessage } from "react-icons/ai";
+import { BiRun } from "react-icons/bi";
+import { MdFastfood } from "react-icons/md";
+import { RiLogoutBoxLine } from "react-icons/ri";
 
 const ActivitiesContainer = (props) => {
   const { userDetails, loading } = useSelector((state) => state.userData);
@@ -39,19 +43,26 @@ const ActivitiesContainer = (props) => {
       <div className={style["heading-container"]}>
         <div className={style.btn}>
           <Link to="/home/all" className={style.link}>
-            <Button color="#EC994B" width="120px">
-              All Activities
+            <Button color="#EC994B" width="160px">
+              All Activities{" "}
+              <BiRun size="1.5em" color="#0096ff" className={style.icon} />
             </Button>
           </Link>
         </div>
         <Link to="/home/messages" className={style.link}>
-          <Button color="#EF5B0C" width="120px">
-            Messages
+          <Button color="#EF5B0C" width="160px">
+            Messages{" "}
+            <AiFillMessage
+              size="1.5em"
+              color="#59CE8F"
+              className={style.icon}
+            />
           </Button>
         </Link>
         <Link to="/home/nutrition" className={style.link}>
-          <Button color="#1C3879" width="120px" margin="0">
-            Nutrition
+          <Button color="#1C3879" width="160px" margin="0">
+            Nutrition{" "}
+            <MdFastfood size="1.5em" color="#D6EFED" className={style.icon} />
           </Button>
         </Link>
       </div>
@@ -64,8 +75,13 @@ const ActivitiesContainer = (props) => {
       <RecentActivities />
       {loading && <Loader />}
       <Link to="" className={`${style.link} ${style.logout}`}>
-        <Button color="#EB1D36" width="120px" onClick={onLogout}>
-          LOGOUT
+        <Button color="#EB1D36" width="160px" onClick={onLogout}>
+          LOGOUT{" "}
+          <RiLogoutBoxLine
+            size="1.5em"
+            color="#D6EFED"
+            className={style.icon}
+          />
         </Button>
       </Link>
     </Container>

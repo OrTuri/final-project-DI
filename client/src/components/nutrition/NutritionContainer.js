@@ -6,6 +6,8 @@ import NutritionSearchForm from "./NutritionSearchForm";
 import FoodResults from "./FoodResults";
 import { useSelector } from "react-redux";
 import Modal from "../UI/modal/Modal";
+import { BiArrowBack } from "react-icons/bi";
+import { MdFavorite } from "react-icons/md";
 
 const NutritionContainer = () => {
   const { searchResults } = useSelector((state) => state.nutrition);
@@ -15,11 +17,15 @@ const NutritionContainer = () => {
       <Container>
         <h1 className={style["main-heading"]}>Nutrition</h1>
         <Link to="/home" className={style.link}>
-          <Button width="100px">Go Back</Button>
+          <Button width="140px">
+            Go Back{" "}
+            <BiArrowBack size="1.5em" color="#fff" className={style.icon} />
+          </Button>
         </Link>
         <Link to="/home/nutrition/favourites" className={style.link}>
-          <Button width="100px" color="#0096FF" margin="0">
-            Favourites
+          <Button width="140px" color="#0096FF" margin="0">
+            Favourites{" "}
+            <MdFavorite size="1.5em" color="#E8AA42" className={style.icon} />
           </Button>
         </Link>
         <NutritionSearchForm />

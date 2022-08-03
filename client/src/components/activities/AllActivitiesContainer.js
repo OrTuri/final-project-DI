@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { loadUserActivities } from "../../features/userDataSlice";
 import { setSelectValue } from "../../features/filterActivitySlice";
 import { setMode } from "../../features/mapSlice";
+import { BiArrowBack } from "react-icons/bi";
 
 const AllActivitiesContainer = (props) => {
   const dispatch = useDispatch();
@@ -25,7 +26,10 @@ const AllActivitiesContainer = (props) => {
     <Container>
       <h1 className={style["main-heading"]}>All Activities</h1>
       <Link to="/home" className={style.link}>
-        <Button width="100px">Go Back</Button>
+        <Button width="140px">
+          Go Back{" "}
+          <BiArrowBack size="1.5em" color="#fff" className={style.icon} />
+        </Button>
       </Link>
       <div className={style.filter}>
         <label htmlFor="filter">Sort By</label>

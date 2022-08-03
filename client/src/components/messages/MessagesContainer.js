@@ -16,6 +16,7 @@ import SearchCard from "./SearchCard";
 import RecentConversations from "./RecentConversations";
 import { useEffect } from "react";
 import { loadUserActivities } from "../../features/userDataSlice";
+import { BiArrowBack } from "react-icons/bi";
 
 const MessagesContainer = () => {
   const dispatch = useDispatch();
@@ -41,7 +42,10 @@ const MessagesContainer = () => {
     <Container>
       <h1 className={style["main-heading"]}>Messages</h1>
       <Link to="/home" className={style.link}>
-        <Button label="Go Back" width="100px" />
+        <Button width="140px">
+          Go Back{" "}
+          <BiArrowBack size="1.5em" color="#fff" className={style.icon} />
+        </Button>
       </Link>
       <form
         className={style["search-users-form"]}
@@ -57,13 +61,9 @@ const MessagesContainer = () => {
               dispatch(setSearchValue(e.target.value));
             }}
           />
-          <Button
-            margin="0"
-            label={<FaSearch />}
-            width="50px"
-            color="#3AB0FF"
-            type="submit"
-          />
+          <Button margin="0" width="50px" color="#3AB0FF" type="submit">
+            <FaSearch />
+          </Button>
         </div>
       </form>
       {searchUsersList.length > 0 && (

@@ -20,7 +20,7 @@ const FoodCard = (props) => {
   const deleteHandler = () => {
     dispatch(setModal(true));
     dispatch(setModalTitle("Are you sure? ⚠️"));
-    dispatch(setModalBody("This will delete the food data"));
+    dispatch(setModalBody("This will delete the food data from the Database"));
   };
   const onDelete = () => {
     dispatch(deleteFood(props.food_id));
