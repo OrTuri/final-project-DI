@@ -19,7 +19,7 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  margin-bottom: 20px;
+  margin: 20px 0;
 }
 
 @media (max-width: 1300px) {
@@ -49,5 +49,10 @@
 }
 
 .icon {
+  margin-left: auto;
+  margin-right: 10px;
+}
+
+.nav {
   margin-left: 10px;
 }

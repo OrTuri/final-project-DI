@@ -43,15 +43,15 @@ const ActivitiesContainer = (props) => {
       <div className={style["heading-container"]}>
         <div className={style.btn}>
           <Link to="/home/all" className={style.link}>
-            <Button color="#EC994B" width="160px">
-              All Activities{" "}
+            <Button color="#EC994B" width="160px" margin="0">
+              <span className={style.nav}>All Activities</span>
               <BiRun size="1.5em" color="#0096ff" className={style.icon} />
             </Button>
           </Link>
         </div>
         <Link to="/home/messages" className={style.link}>
-          <Button color="#EF5B0C" width="160px">
-            Messages{" "}
+          <Button color="#EF5B0C" width="160px" margin="0">
+            <span className={style.nav}>Messages</span>
             <AiFillMessage
               size="1.5em"
               color="#59CE8F"
@@ -61,7 +61,7 @@ const ActivitiesContainer = (props) => {
         </Link>
         <Link to="/home/nutrition" className={style.link}>
           <Button color="#1C3879" width="160px" margin="0">
-            Nutrition{" "}
+            <span className={style.nav}>Nutrition</span>
             <MdFastfood size="1.5em" color="#D6EFED" className={style.icon} />
           </Button>
         </Link>
@@ -75,8 +75,8 @@ const ActivitiesContainer = (props) => {
       <RecentActivities />
       {loading && <Loader />}
       <Link to="" className={`${style.link} ${style.logout}`}>
-        <Button color="#EB1D36" width="160px" onClick={onLogout}>
-          LOGOUT{" "}
+        <Button color="#EB1D36" width="140px" onClick={onLogout}>
+          <span className={style.nav}>LOGOUT</span>
           <RiLogoutBoxLine
             size="1.5em"
             color="#D6EFED"

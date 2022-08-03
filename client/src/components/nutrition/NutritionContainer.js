@@ -16,18 +16,20 @@ const NutritionContainer = () => {
       <Modal btn1Label="Close" />
       <Container>
         <h1 className={style["main-heading"]}>Nutrition</h1>
-        <Link to="/home" className={style.link}>
-          <Button width="140px">
-            Go Back{" "}
-            <BiArrowBack size="1.5em" color="#fff" className={style.icon} />
-          </Button>
-        </Link>
-        <Link to="/home/nutrition/favourites" className={style.link}>
-          <Button width="140px" color="#0096FF" margin="0">
-            Favourites{" "}
-            <MdFavorite size="1.5em" color="#E8AA42" className={style.icon} />
-          </Button>
-        </Link>
+        <div className={style["btns-container"]}>
+          <Link to="/home" className={style.link}>
+            <Button width="140px">
+              Go Back{" "}
+              <BiArrowBack size="1.5em" color="#fff" className={style.icon} />
+            </Button>
+          </Link>
+          <Link to="/home/nutrition/favourites" className={style.link}>
+            <Button width="140px" color="#0096FF" margin="0">
+              Favourites{" "}
+              <MdFavorite size="1.5em" color="#FF7396" className={style.icon} />
+            </Button>
+          </Link>
+        </div>
         <NutritionSearchForm />
         <FoodResults foods={searchResults} />
       </Container>
