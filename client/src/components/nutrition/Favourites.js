@@ -28,7 +28,7 @@ const Favourites = () => {
         {loading && <Loader />}
         {favourites.length < 1 && <p>No favourites yet...</p>}
         <div className={style.container}>
-          {favourites.map((food) => {
+          {[...favourites].reverse().map((food) => {
             return <FoodCard {...food} key={food.food_id} del />;
           })}
         </div>
