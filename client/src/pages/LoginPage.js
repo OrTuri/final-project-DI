@@ -12,6 +12,7 @@ import Modal from "../components/UI/modal/Modal";
 import { setNavigateLogin, setToken } from "../features/authenticationSlice";
 import { useEffect } from "react";
 import { resetData } from "../features/userDataSlice";
+import { AiOutlineLogin } from "react-icons/ai";
 
 const LoginPage = (props) => {
   const navigate = useNavigate();
@@ -86,7 +87,9 @@ const LoginPage = (props) => {
             autoComplete="current-password"
             required
           />
-          <Button type="submit">SIGN IN</Button>
+          <Button type="submit" width="100px">
+            SIGN IN
+          </Button>
         </form>
         <p className={style.paragraph}>
           Not a user?{" "}
