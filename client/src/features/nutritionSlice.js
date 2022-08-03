@@ -76,20 +76,32 @@ export const saveFood = createAsyncThunk(
 export const getFoodData = createAsyncThunk(
   "nutrition/getFoodData",
   async ({ food, grams }, thunkAPI) => {
-    const res = await axios({
-      url: "https://trackapi.nutritionix.com/v2/natural/nutrients",
-      data: {
-        query: `${food} ${grams} grams`,
-      },
-      headers: {
-        "Content-Type": "application/json",
-        "x-app-id": process.env.REACT_APP_NUTRITIONX_API_ID,
-        "x-app-key": process.env.REACT_APP_NUTRITIONX_API_KEY,
-        "x-remote-user-id": "0",
-      },
-      method: "POST",
-    });
-    return res.data;
+    try {
+      const res = await axios({
+        url: "https://trackapi.nutritionix.com/v2/natural/nutrients",
+        data: {
+          query: `${food} ${grams} grams`,
+        },
+        headers: {
+          "Content-Type": "application/json",
+          "x-app-id": process.env.REACT_APP_NUTRITIONX_API_ID,
+          "x-app-key": process.env.REACT_APP_NUTRITIONX_API_KEY,
+          "x-remote-user-id": "0",
+        },
+        method: "POST",
+      });
+      return res.data;
+    } catch (err) {
+      console.log(err);
+      thunkAPI.dispatch(setModal(true));
+      thunkAPI.dispatch(setModalTitle("ERROR! ⛔"));
+      thunkAPI.dispatch(
+        setModalBody(
+          "Could not find what you looked for!\nPlease search something different!"
+        )
+      );
+      throw new Error();
+    }
   }
 );
 
@@ -115,6 +127,12 @@ const nutritionSlice = createSlice({
     },
   },
   extraReducers: {
+    [getFoodData.pending]: (state, action) => {
+      state.loading = true;
+    },
+    [getFoodData.rejected]: (state, action) => {
+      state.loading = false;
+    },
     [getFoodData.fulfilled]: (state, action) => {
       const {
         ndb_no: id,
@@ -137,6 +155,7 @@ const nutritionSlice = createSlice({
         grams,
       };
       state.searchResults.push(food);
+      state.loading = false;
     },
     [getFavourites.pending]: (state, action) => {
       state.loading = true;

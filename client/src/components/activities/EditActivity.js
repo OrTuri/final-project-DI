@@ -17,6 +17,8 @@ import {
 } from "../../features/mapSlice";
 import { Link } from "react-router-dom";
 import Modal from "../UI/modal/Modal";
+import { FiRefreshCcw } from "react-icons/fi";
+import { BiArrowBack } from "react-icons/bi";
 
 const EditActivity = (props) => {
   const { activityId } = useParams();
@@ -87,10 +89,13 @@ const EditActivity = (props) => {
     <>
       <Modal btn1Label="Close" />
       <div className={style["main-container"]}>
+        <h1 className={style["main-heading"]}>Edit Activity</h1>
         <Link to="/home/all" className={style.link}>
-          <Button label="Go Back" width="100px" />
+          <Button width="140px">
+            Go Back{" "}
+            <BiArrowBack size="1.5em" color="#fff" className={style.icon} />
+          </Button>
         </Link>
-        <h1>Edit Activity</h1>
         <form className={style.form} onSubmit={submitHandler}>
           <div className={style["input-container"]}>
             <label htmlFor="activity">Select Activity</label>
@@ -154,11 +159,13 @@ const EditActivity = (props) => {
           </div>
           <div className={style.btn}>
             <Button
-              label="UPDATE"
-              width="100px"
+              width="140px"
               margin="20px auto"
               type="submit"
-            />
+              color="#1C3879"
+            >
+              UPDATE <FiRefreshCcw size="1.3em" className={style.icon} />
+            </Button>
           </div>
         </form>
       </div>

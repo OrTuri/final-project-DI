@@ -14,6 +14,16 @@
   overflow: auto;
 }
 
+.main-heading {
+  font-family: "Roboto", sans-serif;
+  font-size: 40px;
+  margin-top: 20px;
+  text-align: center;
+  grid-column: 2;
+  width: 300px;
+  text-shadow: 14px 7px 12px rgb(0 0 0 / 34%);
+}
+
 .input-container {
   display: flex;
   flex-direction: column;
@@ -72,4 +82,8 @@
 
 .link {
   text-decoration: none;
+}
+
+.icon {
+  margin-left: 10px;
 }
