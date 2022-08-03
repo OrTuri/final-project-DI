@@ -5,7 +5,21 @@ import { setModal, setModalTitle, setModalBody } from "./modalSlice";
 export const deleteFood = createAsyncThunk(
   "nutrition/deleteFood",
   async (foodId, thunkAPI) => {
-    console.log(foodId);
+    try {
+      await axios({
+        url: `${process.env.REACT_APP_PROXY || ""}/nutrition/delete`,
+        method: "DELETE",
+        headers: {
+          Authorization: thunkAPI.getState().authentication.token,
+          "Content-Type": "text/plain",
+        },
+        withCredentials: true,
+        data: foodId,
+      });
+      thunkAPI.dispatch(getFavourites());
+    } catch (err) {
+      console.log(err);
+    }
   }
 );
 

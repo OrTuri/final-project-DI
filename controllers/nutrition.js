@@ -1,4 +1,8 @@
-const { pushDataToDB, getPropertyFromDB } = require("../database/dbModules");
+const {
+  pushDataToDB,
+  getPropertyFromDB,
+  deleteFromDB,
+} = require("../database/dbModules");
 
 const saveFood = (req, res) => {
   const {
@@ -42,4 +46,11 @@ const getFavourites = (req, res) => {
     });
 };
 
-module.exports = { saveFood, getFavourites };
+const deleteFood = (req, res) => {
+  const food_id = req.body;
+  deleteFromDB("exercise_tracking_nutrition", { food_id }).then((result) =>
+    res.sendStatus(200)
+  );
+};
+
+module.exports = { saveFood, getFavourites, deleteFood };
