@@ -24,13 +24,11 @@ const FoodCard = (props) => {
   };
   const deleteHandler = () => {
     dispatch(setFoodIdForDeletion(props.food_id));
-    console.log(props.food_id);
     dispatch(setModal(true));
     dispatch(setModalTitle("Are you sure? ⚠️"));
     dispatch(setModalBody("This will delete the food data from the Database"));
   };
   const onDelete = () => {
-    console.log(foodIdForDeletion);
     dispatch(deleteFood(foodIdForDeletion));
     dispatch(resetModal());
   };
