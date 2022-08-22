@@ -113,6 +113,7 @@ const initialState = {
   searchResults: [],
   favourites: [],
   loading: false,
+  foodIdForDeletion: null,
 };
 
 const nutritionSlice = createSlice({
@@ -124,6 +125,9 @@ const nutritionSlice = createSlice({
     },
     resetSearchValues: (state, action) => {
       state.searchValues = initialState.searchValues;
+    },
+    setFoodIdForDeletion: (state, action) => {
+      state.foodIdForDeletion = action.payload;
     },
   },
   extraReducers: {
@@ -167,6 +171,7 @@ const nutritionSlice = createSlice({
   },
 });
 
-export const { setSearchValues, resetSearchValues } = nutritionSlice.actions;
+export const { setSearchValues, resetSearchValues, setFoodIdForDeletion } =
+  nutritionSlice.actions;
 
 export default nutritionSlice.reducer;

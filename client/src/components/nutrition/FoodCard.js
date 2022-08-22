@@ -2,8 +2,12 @@ import style from "./FoodCard.module.css";
 import Button from "../UI/Form/Button";
 import { AiFillSave } from "react-icons/ai";
 import { BsFillTrashFill } from "react-icons/bs";
-import { saveFood, deleteFood } from "../../features/nutritionSlice";
-import { useDispatch } from "react-redux";
+import {
+  saveFood,
+  deleteFood,
+  setFoodIdForDeletion,
+} from "../../features/nutritionSlice";
+import { useDispatch, useSelector } from "react-redux";
 import {
   setModal,
   setModalTitle,
@@ -13,17 +17,21 @@ import {
 import Modal from "../UI/modal/Modal";
 
 const FoodCard = (props) => {
+  const { foodIdForDeletion } = useSelector((state) => state.nutrition);
   const dispatch = useDispatch();
   const saveHandler = () => {
     dispatch(saveFood(props.foodData));
   };
   const deleteHandler = () => {
+    dispatch(setFoodIdForDeletion(props.food_id));
+    console.log(props.food_id);
     dispatch(setModal(true));
     dispatch(setModalTitle("Are you sure? ⚠️"));
     dispatch(setModalBody("This will delete the food data from the Database"));
   };
   const onDelete = () => {
-    dispatch(deleteFood(props.food_id));
+    console.log(foodIdForDeletion);
+    dispatch(deleteFood(foodIdForDeletion));
     dispatch(resetModal());
   };
   return (
