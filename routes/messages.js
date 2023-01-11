@@ -10,9 +10,9 @@ const {
 const { jwtAuth } = require("../middleware/jwtAuth");
 
 router.post("/search", jwtAuth, searchUsers);
-router.post("/send", sendMessage);
-router.post("/getMessages", getMessages);
-router.post("/recentMessages", recentMessages);
-router.delete("/delete", deleteMessages);
+router.post("/send", jwtAuth, sendMessage);
+router.post("/getMessages", jwtAuth, getMessages);
+router.post("/recentMessages", jwtAuth, recentMessages);
+router.delete("/delete", jwtAuth, deleteMessages);
 
 module.exports = router;
